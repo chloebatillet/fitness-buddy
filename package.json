@@ -1,0 +1,27 @@
+{
+  "name": "fitness-buddy",
+  "version": "1.0.0",
+  "description": "A simple fitness tracking app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run start-backend && npm run start-frontend",
+    "start-backend": "cd backend && npm start",
+    "start-frontend": "cd frontend && npm start",
+    "build": "npm run build-frontend",
+    "build-frontend": "cd frontend && npm run build",
+    "deploy": "npm run deploy-backend && npm run deploy-frontend",
+    "deploy-backend": "cd backend && npm run deploy",
+    "deploy-frontend": "cd frontend && npm run deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chloebatillet/fitness-buddy.git"
+  },
+  "author": "Chloé Batillet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chloebatillet/fitness-buddy/issues"
+  },
+  "homepage": "https://github.com/chloebatillet/fitness-buddy#readme"
+}
