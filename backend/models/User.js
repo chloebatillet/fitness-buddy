@@ -3,7 +3,10 @@ const sequelize = require("./connection");
 
 class User extends Model {
   static associate(models) {
-    User.hasMany(models.Session)
+    User.hasMany(models.Session);
+  }
+  getFullname() {
+    return [this.firstname, this.lastname].join(" ");
   }
 }
 
@@ -25,9 +28,11 @@ User.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    //* pas utile pour le moment
     // thumbnail: {
     //   type: DataTypes.TEXT,
     // },
+    //* voir dans une prochaine version pour afficher les profils d'autres utilisateurs
     // slug: {
     //   type: DataTypes.TEXT,
     //   allowNull: false,

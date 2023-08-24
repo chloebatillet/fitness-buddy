@@ -22,10 +22,12 @@ sequelize
   .then(() => {
     console.log("DB connection: OK");
   })
-  .then(async () => {
-    await sequelize.sync(/*{ force: true }*/);
-    console.log("All models were synchronized successfully.");
-  })
+  //* Uncomment to reset DB
+  //.then(async () => {
+    
+    //await sequelize.sync(/*{ force: true }*/);
+    //console.log("All models were synchronized successfully.");
+  //})
   .catch((error) => {
     console.error(error);
   });
