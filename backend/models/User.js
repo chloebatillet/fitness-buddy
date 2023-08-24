@@ -2,9 +2,9 @@ const { Model, DataTypes } = require("sequelize");
 const sequelize = require("./connection");
 
 class User extends Model {
-  static associate(models) {
-    User.hasMany(models.Session);
-  }
+  // static associate(models) {
+  //   User.hasMany(models.Session);
+  // }
   getFullname() {
     return [this.firstname, this.lastname].join(" ");
   }

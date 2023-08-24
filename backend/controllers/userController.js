@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const validator = require("email-validator");
 const jwt = require("jsonwebtoken");
 
-const User = require("../models/User");
+const { User } = require("../models/index");
 
 const userController = {
   login: async (req, res) => {
@@ -87,7 +87,7 @@ const userController = {
       const user = await User.findByPk(id);
 
       if (!user) {
-        res.status(404).json({error: "Account not found"});
+        res.status(404).json({ error: "Account not found" });
         return;
       }
 

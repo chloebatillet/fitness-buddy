@@ -3,10 +3,10 @@ const sequelize = require("./connection");
 const User = require("./User");
 
 class Session extends Model {
-  static associate(models) {
-    Session.belongsTo(models.User);
-    Session.belongsToMany(models.Exercise, {through: models.SessionExercise})
-  }
+  // static associate(models) {
+  //   Session.belongsTo(models.User);
+  //   Session.belongsToMany(models.Exercise, {through: models.SessionExercise})
+  // }
 }
 
 Session.init(

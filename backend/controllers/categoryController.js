@@ -1,9 +1,9 @@
-const Category = require("../models/Bodypart");
+const { Bodypart } = require("../models/index");
 
 const categoryController = {
   getAll: async (req, res) => {
     try {
-      const categoryList = await Category.findAll();
+      const categoryList = await Bodypart.findAll();
 
       res.json(categoryList);
     } catch (error) {
@@ -16,7 +16,7 @@ const categoryController = {
     try {
       // console.log(Object.entries(req.body));
       // verifier si le NOM existe déjà
-      const alreadyExists = await Category.findOne({
+      const alreadyExists = await Bodypart.findOne({
         where: { name: req.body.name.toLowerCase() },
       });
 
@@ -25,7 +25,7 @@ const categoryController = {
         return;
       }
 
-      await Category.create({ name: req.body.name.toLowerCase() });
+      await Bodypart.create({ name: req.body.name.toLowerCase() });
 
       res.status(201).json({ message: "Category added!" });
     } catch (error) {
@@ -37,7 +37,7 @@ const categoryController = {
   update: async (req, res) => {
     try {
       // verifier si le NOM existe déjà
-      const alreadyExists = await Category.findOne({
+      const alreadyExists = await Bodypart.findOne({
         where: { name: req.body.name.toLowerCase() },
       });
 
@@ -46,12 +46,14 @@ const categoryController = {
         return;
       }
 
-      // Change everyone without a last name to "Doe"
-      await Category.update({name: req.body.name.toLowerCase()}, {
-        where: {id: req.params.id},
-      });
+      await Bodypart.update(
+        { name: req.body.name.toLowerCase() },
+        {
+          where: { id: req.params.id },
+        }
+      );
 
-      res.status(200).json("Category updated!")
+      res.status(200).json("Category updated!");
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
@@ -60,9 +62,8 @@ const categoryController = {
 
   delete: async (req, res) => {
     try {
-      const categoryToDelete = await Category.findByPk(req.params.id);
+      const categoryToDelete = await Bodypart.findByPk(req.params.id);
 
-      console.log(categoryToDelete);
       if (!categoryToDelete) {
         res.status(404).json({ error: "Category not found." });
         return;

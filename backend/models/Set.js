@@ -3,16 +3,16 @@ const sequelize = require("./connection");
 const SessionExercise = require("./SessionExercise");
 
 class Set extends Model {
-  static associate(models) {
-    Set.belongsTo(models.SessionExercise, {
-      foreignKey: "sessionExercise_id",
-    });
-  }
+  // static associate(models) {
+  //   Set.belongsTo(models.SessionExercise, {
+  //     foreignKey: "sessionExercise_id",
+  //   });
+  // }
 }
 
 Set.init(
   {
-    sessionExercise_id: {
+    session_exercise_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {

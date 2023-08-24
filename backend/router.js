@@ -32,13 +32,9 @@ router.post("/session/:id", (req, res) => res.send("add exercise and sets"));
  * - basic CRUD
  */
 router.get("/exercise-list", exerciseController.getAll);
-router.post("/exercise-list", (req, res) => res.send("create new exercise"));
-router.patch("/exercise-list/:id", (req, res) =>
-  res.send("modify exercise" + req.params.id)
-);
-router.delete("/exercise-list/:id", (req, res) =>
-  res.send("delete exercise" + req.params.id)
-);
+router.post("/exercise-list", exerciseController.add);
+router.patch("/exercise-list/:id", exerciseController.update);
+router.delete("/exercise-list/:id", exerciseController.delete);
 // Liste des categories, liée aux exercises.
 // Seulement la get sera utilisée par l'utilisateur pour créer la liste déroulante lors de la création d'un nouvel exo
 router.get("/exercise-categories", categoryController.getAll);

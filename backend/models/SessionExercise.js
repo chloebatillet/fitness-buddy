@@ -4,9 +4,9 @@ const Session = require("./Session");
 const Exercise = require("./Exercise");
 
 class SessionExercise extends Model {
-  static associate(models) {
-    SessionExercise.hasMany(models.Set, /*{foreignKey: "sessionExercise_id"}*/)
-  }
+  // static associate(models) {
+  //   SessionExercise.hasMany(models.Set, /*{foreignKey: "sessionExercise_id"}*/)
+  // }
 }
 
 SessionExercise.init(

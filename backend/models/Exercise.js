@@ -3,10 +3,13 @@ const sequelize = require("./connection");
 const Bodypart = require("./Bodypart");
 
 class Exercise extends Model {
-  static associate(models) {
-    Exercise.belongsTo(models.Bodypart);
-    Exercise.belongsToMany(models.Session, {through: models.SessionExercise})
-  }
+  // static associate(models) {
+  //   Exercise.belongsTo(models.Bodypart, {
+  //     foreignKey: "bodypart_id",
+  //     as: "exercise_category",
+  //   });
+  //   Exercise.belongsToMany(models.Session, {through: models.SessionExercise})
+  // }
 }
 
 Exercise.init(
