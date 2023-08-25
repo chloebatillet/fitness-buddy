@@ -3,11 +3,14 @@ const sequelize = require("./connection");
 const SessionExercise = require("./SessionExercise");
 
 class Set extends Model {
-  // static associate(models) {
-  //   Set.belongsTo(models.SessionExercise, {
-  //     foreignKey: "sessionExercise_id",
-  //   });
-  // }
+  static async addSet(session_exercise_id, nb_reps, weight_lifted) {
+    const newSet = await this.create({
+      session_exercise_id: session_exercise_id,
+      nb_reps: nb_reps,
+      weight_lifted: weight_lifted,
+    });
+    return newSet;
+  }
 }
 
 Set.init(

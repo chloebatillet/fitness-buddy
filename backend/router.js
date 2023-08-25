@@ -4,6 +4,7 @@ const router = Router();
 const userController = require("./controllers/userController");
 const exerciseController = require("./controllers/exerciseController");
 const categoryController = require("./controllers/categoryController");
+const sessionController = require("./controllers/sessionController");
 
 /**
  * Authentication
@@ -16,8 +17,10 @@ router.delete("/delete-account/:id", userController.delete);
 /**
  * Start a session
  */
-router.get("/session/:id", (req, res) => res.send("session: " + req.params.id));
-router.post("/session", (req, res) => res.send("créer une session"));
+router.post("/session", sessionController.create);
+router.get('/sessions/:id', sessionController.getAllFromUser)
+router.get("/session/:id", sessionController.getOne);
+router.delete("/session/:id", sessionController.delete);
 
 /**
  * Add exercise and sets to a session
@@ -25,7 +28,15 @@ router.post("/session", (req, res) => res.send("créer une session"));
  *  - first, create a line in sessionExercise with session_id and exercise_id (selected in the list)
  *  - second, add sets to it (loop?)
  */
-router.post("/session/:id", (req, res) => res.send("add exercise and sets"));
+router.post("/session/:id/exercise", sessionController.addExerciseToSession);
+router.post(
+  "/session/session-exercise/:id/set",
+  sessionController.addSetToExercise
+);
+router.get(
+  "/session/session-exercise/:id",
+  sessionController.getOneExerciceFromSession
+);
 
 /**
  * Exercise list
@@ -35,6 +46,9 @@ router.get("/exercise-list", exerciseController.getAll);
 router.post("/exercise-list", exerciseController.add);
 router.patch("/exercise-list/:id", exerciseController.update);
 router.delete("/exercise-list/:id", exerciseController.delete);
+
+// TODO: AJOUTER LES EXOS FAVORIS 
+
 // Liste des categories, liée aux exercises.
 // Seulement la get sera utilisée par l'utilisateur pour créer la liste déroulante lors de la création d'un nouvel exo
 router.get("/exercise-categories", categoryController.getAll);

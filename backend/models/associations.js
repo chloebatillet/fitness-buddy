@@ -18,14 +18,30 @@ Bodypart.hasMany(Exercise, {
   as: "exercises",
 });
 
-Session.belongsToMany(Exercise, { through: SessionExercise });
-Exercise.belongsToMany(Session, { through: SessionExercise });
+Session.belongsToMany(Exercise, {
+  foreignKey: "session_id",
+  through: SessionExercise,
+});
+Exercise.belongsToMany(Session, {
+  foreignKey: "exercise_id",
+  through: SessionExercise,
+});
 
 SessionExercise.hasMany(Set, {
-  foreignKey: "sessionExercise_id",
+  foreignKey: "session_exercise_id",
+  as: "sets"
 });
 Set.belongsTo(SessionExercise, {
-  foreignKey: "sessionExercise_id",
+  foreignKey: "session_exercise_id",
+});
+
+Exercise.hasMany(SessionExercise, {
+  foreignKey: "exercise_id",
+  as: "azertyuiop",
+});
+SessionExercise.belongsTo(Exercise, {
+  foreignKey: "exercise_id",
+  as: "exercise_name",
 });
 
 module.exports = {

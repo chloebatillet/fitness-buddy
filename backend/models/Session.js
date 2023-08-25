@@ -3,10 +3,6 @@ const sequelize = require("./connection");
 const User = require("./User");
 
 class Session extends Model {
-  // static associate(models) {
-  //   Session.belongsTo(models.User);
-  //   Session.belongsToMany(models.Exercise, {through: models.SessionExercise})
-  // }
 }
 
 Session.init(
@@ -19,10 +15,6 @@ Session.init(
         key: "id",
         deferrable: Deferrable.INITIALLY_IMMEDIATE,
       },
-    },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: false,
     },
   },
   {

@@ -4,13 +4,24 @@ const Session = require("./Session");
 const Exercise = require("./Exercise");
 
 class SessionExercise extends Model {
-  // static associate(models) {
-  //   SessionExercise.hasMany(models.Set, /*{foreignKey: "sessionExercise_id"}*/)
-  // }
+  static async addExercise(sessionId, exerciseId) {
+    const sessionExercise = await this.create({
+      session_id: parseInt(sessionId),
+      exercise_id: parseInt(exerciseId),
+    });
+    console.log(sessionExercise);
+    return sessionExercise;
+  }
 }
 
 SessionExercise.init(
   {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
     session_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -32,7 +43,7 @@ SessionExercise.init(
   },
   {
     sequelize,
-    tableName: "sessionExercise",
+    tableName: "session_exercise",
   }
 );
 

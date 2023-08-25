@@ -2,15 +2,7 @@ const { Model, DataTypes, Deferrable } = require("sequelize");
 const sequelize = require("./connection");
 const Bodypart = require("./Bodypart");
 
-class Exercise extends Model {
-  // static associate(models) {
-  //   Exercise.belongsTo(models.Bodypart, {
-  //     foreignKey: "bodypart_id",
-  //     as: "exercise_category",
-  //   });
-  //   Exercise.belongsToMany(models.Session, {through: models.SessionExercise})
-  // }
-}
+class Exercise extends Model {}
 
 Exercise.init(
   {
