@@ -27,15 +27,27 @@ const sessionController = {
   getOne: async (req, res) => {
     try {
       const session = await Session.findByPk(req.params.id, {
-        include: {
-          model: Exercise,
-        },
+        include: [
+          {
+            model: Exercise,
+            include: {
+              association: "exercise_details",
+              include: {
+                association: "exercise_sets",
+              },
+            },
+          },
+        ],
       });
 
-      //TODO: uncomment quand l'authentification sera mise en place
-      //   if (req.user.id !== session.user_id) {
-      //     res.status(400).json(error: "You are not authorized to this this")
-      //   }
+      if (!session) {
+        res.status(404).json({ error: "Not found." });
+        return;
+      }
+      if (req.user.id !== session.user_id) {
+        res.status(400).json({ error: "You are not authorized to this this." });
+        return;
+      }
 
       res.json(session);
     } catch (error) {
@@ -46,13 +58,15 @@ const sessionController = {
 
   getAllFromUser: async (req, res) => {
     try {
-        const {id} = req.params;
+      const { id } = req.user;
 
-        const sessionList = await Session.findAll({where: {
-            user_id: id
-        }});
+      const sessionList = await Session.findAll({
+        where: {
+          user_id: id,
+        },
+      });
 
-        res.json(sessionList)
+      res.json(sessionList);
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
@@ -76,9 +90,10 @@ const sessionController = {
   addSetToExercise: async (req, res) => {
     try {
       const { nb_reps, weight_lifted } = req.body;
-      const { id } = req.params;
+      const { session_exercise_id } = req.params;
+      console.log(req.body);
 
-      await Set.addSet(id, nb_reps, weight_lifted);
+      await Set.addSet(session_exercise_id, nb_reps, weight_lifted);
 
       res.status(201).json({ message: "Set added!" });
     } catch (error) {

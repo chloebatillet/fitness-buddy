@@ -29,15 +29,16 @@ Exercise.belongsToMany(Session, {
 
 SessionExercise.hasMany(Set, {
   foreignKey: "session_exercise_id",
-  as: "sets"
+  as: "exercise_sets",
 });
 Set.belongsTo(SessionExercise, {
   foreignKey: "session_exercise_id",
+  as: "exercise_name_set",
 });
 
 Exercise.hasMany(SessionExercise, {
   foreignKey: "exercise_id",
-  as: "azertyuiop",
+  as: "exercise_details",
 });
 SessionExercise.belongsTo(Exercise, {
   foreignKey: "exercise_id",

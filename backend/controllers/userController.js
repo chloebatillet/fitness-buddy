@@ -81,7 +81,7 @@ const userController = {
 
   delete: async (req, res) => {
     try {
-      const { id } = req.params;
+      const { id } = req.user;
 
       // gestion d'erreur
       const user = await User.findByPk(id);
