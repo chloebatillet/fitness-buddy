@@ -1,11 +1,10 @@
 const { Router } = require("express");
 const router = Router();
 
-const userController = require("./controllers/userController");
-const exerciseController = require("./controllers/exerciseController");
-const categoryController = require("./controllers/categoryController");
-const sessionController = require("./controllers/sessionController");
-
+const userController = require("../controllers/userController");
+const exerciseController = require("../controllers/exerciseController");
+const categoryController = require("../controllers/categoryController");
+const sessionController = require("../controllers/sessionController");
 
 /**
  * Account settings
