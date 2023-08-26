@@ -1,0 +1,58 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 2s ease-in-out;
+
+  &.open {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.modal {
+  width: 100%;
+  margin: auto;
+  padding: 1rem;
+  background-color: #EFEFEF;
+  border-radius: 4px;
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.08);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 2s ease-in-out;
+  position: relative;
+
+  &.open {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .btn-close-icon {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    // .icon {
+    //   border: solid 1px black;
+    //   padding: 2px;
+    //   border-radius: 4px;
+    // }
+  }
+
+  .btn-message {
+    text-transform: uppercase;
+    padding: 2rem 0;
+  }
+
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
