@@ -1,0 +1,14 @@
+.page-container {
+  background-color: #efefef;
+  //? Necessary?
+  height: 100vh;
+  padding-top: calc(40px + 2rem);
+  padding-bottom: 4.5rem;
+
+  .page-content {
+    // background-color: hotpink;
+    width: 80%;
+    margin: auto;
+    height: 100%;
+  }
+}

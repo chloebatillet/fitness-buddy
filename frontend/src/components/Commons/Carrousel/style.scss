@@ -1,0 +1,30 @@
+.carrousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  //   .carrousel-btn {
+  //     border-radius: 50%;
+  //     display: flex;
+  //     align-items: center;
+  //     justify-content: center;
+  //     padding: .5rem;
+  //     &:hover {
+  //       background-color: rgb(#222, 0.2);
+  //     }
+  //   }
+
+  .carrousel-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    > a {
+      > button {
+        width: 5rem;
+        height: 5rem;
+      }
+    }
+  }
+}

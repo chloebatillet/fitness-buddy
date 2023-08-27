@@ -1,0 +1,31 @@
+.insights-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: .5rem;
+
+  .insight-box {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    // width: calc((100% - 1rem) /3);
+    width: fit-content;
+
+    .insight-value-group {
+      display: flex;
+      flex-direction: row;
+      color: #84dcc6;
+      font-weight: 900;
+      font-size: 1.8rem;
+    }
+
+    .insight-legend {
+        margin-top: .3rem;
+      text-transform: uppercase;
+      color: rgb(#222, 0.2);
+    }
+  }
+}

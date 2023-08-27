@@ -1,0 +1,41 @@
+:root {
+  --font-size: 1.2rem;
+  --link-color: #2121214d;
+}
+
+.title-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .5rem;
+
+  .title-group {
+    display: flex;
+    align-items: end;
+    justify-content: flex-start;
+    font-size: var(--font-size);
+    text-transform: uppercase;
+
+    .title-icon {
+      font-size: calc(var(--font-size) * 1.2);
+      margin-bottom: calc(var(--font-size) / -4);
+      margin-right: 0.5rem;
+    }
+  }
+
+  .title-link {
+    color: var(--link-color);
+    border-bottom: solid 1px var(--link-color);
+
+    > a {
+      position: relative;
+
+      &::after {
+        content: url('https://api.iconify.design/solar/arrow-right-linear.svg?color=rgba(33%2C%2033%2C%2033%2C%200.30196078431372547)');
+        margin-left: 0.2rem;
+        position: absolute;
+      }
+    }
+  }
+}

@@ -1,14 +1,20 @@
+.modal-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 2s ease-in-out;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
 
   &.open {
     visibility: visible;
@@ -17,42 +23,46 @@
 }
 
 .modal {
-  width: 100%;
-  margin: auto;
+  width: 80%;
   padding: 1rem;
-  background-color: #EFEFEF;
+  background-color: #efefef;
   border-radius: 4px;
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.08);
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s, opacity 2s ease-in-out;
-  position: relative;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+  position: absolute;
+  top: 15rem;
 
   &.open {
     visibility: visible;
     opacity: 1;
   }
 
-  .btn-close-icon {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+  .modal-content {
+    position: relative;
 
-    // .icon {
-    //   border: solid 1px black;
-    //   padding: 2px;
-    //   border-radius: 4px;
-    // }
-  }
+    .btn-close-icon {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
 
-  .btn-message {
-    text-transform: uppercase;
-    padding: 2rem 0;
-  }
+      // .icon {
+      //   border: solid 1px black;
+      //   padding: 2px;
+      //   border-radius: 4px;
+      // }
+    }
 
-  .btn-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    .btn-message {
+      text-transform: uppercase;
+      padding: 2rem 0;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
   }
 }

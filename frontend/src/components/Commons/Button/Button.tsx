@@ -9,6 +9,7 @@ interface ButtonProps {
   onClick: MouseEventHandler<HTMLButtonElement> | undefined;
   icon?: string;
   autofocus?: boolean;
+  isNo?: boolean;
   style?: {
     color?: string;
     backgroundColor?: string;
@@ -16,10 +17,17 @@ interface ButtonProps {
   };
 }
 
-function Button({ type, value, icon, autofocus, style, onClick}: ButtonProps) {
+function Button({
+  type,
+  value,
+  icon,
+  autofocus,
+  isNo, style,
+  onClick,
+}: ButtonProps) {
   return (
     <button
-      className="btn"
+      className={`btn ${isNo? "is-no" : ""}`}
       type={type}
       autoFocus={autofocus}
       style={{ ...style }}

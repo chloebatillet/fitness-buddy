@@ -1,43 +1,30 @@
 import { useState } from 'react';
-import Button from '../../Commons/Button/Button';
-import Modal from '../../Commons/Modal/Modal';
+
+import logo from '../../../assets/FITNESS BUDDYlogo.svg';
+
+import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
+
+import './style.scss';
+
 
 function Authentication() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = () => {
-    setIsOpen(true);
-    console.log(isOpen);
-  };
-
-  console.log(isOpen);
+  const [isLogin, setIsLogin] = useState(false);
 
   return (
-    <div
-      style={{
-        margin: 'auto',
-        width: '66.6%',
-        height: '100vh',
-      }}
-    >
-      <div>Logo</div>
-      <div>Modal</div>
-      <Button
-        type="button"
-        value="hello"
-        style={{ fontWeight: 'normal' }}
-        icon="akar-icons:cross"
-        onClick={openModal}
-      />
-      
-      {isOpen && (
-        <Modal
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          message="Coucou comment ça va ?"
-          acceptMessage="oui" refuseMessage="annuler"
-        />
-      )}
+    <div className="container authentication">
+      <div className="logo-container">
+        <img className="logo" src={logo} alt="Logo Fitness Buddy" />
+      </div>
+
+      <div className="form-container">
+        {isLogin ? (
+          <LoginForm isLogin={isLogin} setIsLogin={setIsLogin} />
+        ) : (
+          <SignupForm isLogin={isLogin} setIsLogin={setIsLogin} />
+        )}
+      </div>
+      <p className='credits'>Created & developed by @chloebatillet</p>
     </div>
   );
 }
