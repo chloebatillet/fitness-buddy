@@ -1,12 +1,13 @@
 import Button from '../../../../Commons/Button/Button';
 import Carrousel from '../../../../Commons/Carrousel/Carrousel';
+import List from '../../../../Commons/List/List';
 import Section from '../../../../Commons/Section/Section';
 import Title from '../../../../Commons/Title/Title';
 import Insights from './Insights/Insights';
 
 function Homepage() {
   return (
-    <div className='container'>
+    <div className="container">
       <Section
         titleDetails={{
           level: '2',
@@ -30,8 +31,17 @@ function Homepage() {
           level: '2',
           text: 'exercice list',
           icon: 'solar:list-bold',
+          link: '/settings/exercise-list',
+          textLink: 'Manage',
         }}
-        content={<Button />}
+        content={
+          <List
+            list={{
+              name: 'string',
+              items: [],
+            }}
+          />
+        }
       />
     </div>
   );

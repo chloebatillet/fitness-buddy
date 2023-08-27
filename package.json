@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run start-backend && npm run start-frontend",
+    "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\"",
     "start-backend": "cd backend && npm start",
     "start-frontend": "cd frontend && npm start",
     "build": "npm run build-frontend",
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/chloebatillet/fitness-buddy/issues"
   },
-  "homepage": "https://github.com/chloebatillet/fitness-buddy#readme"
+  "homepage": "https://github.com/chloebatillet/fitness-buddy#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  }
 }

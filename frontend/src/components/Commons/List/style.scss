@@ -1,0 +1,22 @@
+.list-title-container {
+  font-weight: bold;
+  text-transform: capitalize;
+  color: #222;
+  border-bottom: solid 1px rgb(#222, 0.2);
+  padding-bottom: 0.2rem;
+  display: flex;
+  flex-direction: row;
+  gap: .5rem;
+}
+.list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 1rem;
+  margin-top: .3rem;
+
+  .list-item-name {
+    text-transform: capitalize;
+  }
+}
