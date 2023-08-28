@@ -2,23 +2,23 @@ import './style.scss';
 import ListItem, { ListItemProps } from './ListItem/ListItem';
 import { Icon } from '@iconify/react';
 
-interface ListProps {
-  list: {
-    name: string;
-    items: ListItemProps[];
-  };
+export interface ListProps {
+  name: string;
+  items: ListItemProps[];
   icon?: string;
 }
 
-function List({ list, icon }: ListProps) {
+function List({ name, items, icon }: ListProps) {
   return (
     <ul>
       <div className="list-title-container">
         {icon && <Icon icon={icon} />}
-        {list.name && <p className="list-title">{list.name}</p>}
+        {name && <p className="list-title">{name}</p>}
       </div>
 
-      <ListItem id={2} name="bloblo" icon="ph:star" />
+      {items.map((e) => {
+        return <ListItem key={e.name} id={e.id} name={e.name} icon="ph:star" />;
+      })}
     </ul>
   );
 }

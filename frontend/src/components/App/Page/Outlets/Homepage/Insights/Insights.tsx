@@ -9,7 +9,7 @@ function Insights() {
 
   const items = insights.map((e) => {
     return (
-      <div className="insight-box">
+      <div className="insight-box" key={e.legend}>
         <div className="insight-value-group">
           <div className="insight-value">{e.value}</div>
           <div className="insight-unit">{e.unit}</div>
@@ -18,6 +18,7 @@ function Insights() {
       </div>
     );
   });
+
   return (
     <div className="insights-container">
         {items}

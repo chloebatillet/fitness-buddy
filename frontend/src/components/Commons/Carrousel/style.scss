@@ -3,27 +3,51 @@
   align-items: center;
   justify-content: space-between;
 
-  //   .carrousel-btn {
-  //     border-radius: 50%;
-  //     display: flex;
-  //     align-items: center;
-  //     justify-content: center;
-  //     padding: .5rem;
-  //     &:hover {
-  //       background-color: rgb(#222, 0.2);
-  //     }
-  //   }
+  .carrousel-btn {
+    //display: none;
+    height: calc(5rem * 1.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+
+    &:active {
+      background-color: rgb(#222, 0.05);
+    }
+  }
+
+  .carrousel-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+    //position: relative;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 
   .carrousel-content {
     display: flex;
     align-items: center;
-    justify-content: center;
+    height: calc(5rem * 1.1);
+    //justify-content: start;
     gap: 0.5rem;
+    position: relative;
+    transition: all 0.3s ease-in-out;
 
     > a {
+      scroll-snap-align: start;
+      z-index: 20000;
+
       > button {
         width: 5rem;
         height: 5rem;
+      }
+
+      &.is-active {
+        transform: scale(1.1);
       }
     }
   }

@@ -3,6 +3,10 @@ const sequelize = require("./connection");
 const User = require("./User");
 
 class Session extends Model {
+  static async createSession(userId) {
+    const newSession = await this.create({ user_id: userId });
+    return newSession;
+  }
 }
 
 Session.init(

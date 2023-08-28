@@ -1,11 +1,10 @@
-import Button from '../../../../Commons/Button/Button';
 import Carrousel from '../../../../Commons/Carrousel/Carrousel';
-import List from '../../../../Commons/List/List';
 import Section from '../../../../Commons/Section/Section';
-import Title from '../../../../Commons/Title/Title';
 import Insights from './Insights/Insights';
+import ExerciseList from './ExerciseList/ExerciseList';
 
 function Homepage() {
+  
   return (
     <div className="container">
       <Section
@@ -35,12 +34,7 @@ function Homepage() {
           textLink: 'Manage',
         }}
         content={
-          <List
-            list={{
-              name: 'string',
-              items: [],
-            }}
-          />
+          < ExerciseList />
         }
       />
     </div>

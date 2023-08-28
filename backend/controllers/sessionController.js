@@ -3,7 +3,7 @@ const { Session, Exercise, SessionExercise, Set } = require("../models/index");
 const sessionController = {
   create: async (req, res) => {
     try {
-      const newSession = await Session.create(req.body);
+      const newSession = await Session.createSession(req.user.id);
 
       res.status(201).json(newSession);
     } catch (error) {
