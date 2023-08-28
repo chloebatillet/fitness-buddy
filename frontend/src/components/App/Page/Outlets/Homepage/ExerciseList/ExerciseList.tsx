@@ -1,6 +1,7 @@
-import List, { ListProps } from '../../../../../Commons/List/List';
+import axios from '../../../../../../utils/axios';
+import List from '../../../../../Commons/List/List';
 
-import axios from 'axios';
+
 
 import { useEffect, useState } from 'react';
 
@@ -11,11 +12,6 @@ function ExerciseList() {
     var options = {
       method: 'GET',
       url: 'http://localhost:3000/exercise-list',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MzIxMTkxOSwiZXhwIjoxNjkzMjE1NTE5fQ.ZxX2_IldDA0ThZEQPix5zJAi_2wuw8PK-pv0aqd_G44',
-      },
     };
 
     axios

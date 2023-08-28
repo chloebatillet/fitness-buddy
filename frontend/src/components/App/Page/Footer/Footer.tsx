@@ -1,5 +1,5 @@
-import { SetStateAction, useState } from 'react';
-import { redirect } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './style.scss';
 import Modal from '../../../Commons/Modal/Modal';
@@ -7,10 +7,12 @@ import Modal from '../../../Commons/Modal/Modal';
 function Footer() {
   const [isLaunched, setIsLaunched] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleStart = () => {
     setIsLaunched(!isLaunched);
     console.log('redirection');
+    navigate('/session/1');
   };
 
   const handleStop = () => {
@@ -21,7 +23,7 @@ function Footer() {
     setIsLaunched(false);
     setIsOpen(false);
     console.log('redirection');
-    
+    navigate(-1);
   };
 
   const handleClick = () => {
@@ -45,6 +47,7 @@ function Footer() {
           message={'Are you sure you want to finish this session?'}
         />
       )}
+      {/* {isLaunched && <Redirect to="/nouvelle-page" />} */}
     </>
   );
 }
