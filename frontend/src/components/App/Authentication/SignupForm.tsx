@@ -1,5 +1,8 @@
+import axios from 'axios';
 import Button from '../../Commons/Button/Button';
 import FormField from '../../Commons/FormField/FormField';
+import { useState } from 'react';
+import { useLogContext } from '../../../contexts/LogContext';
 
 interface SignupFormProps {
   isLogin: boolean;
@@ -7,17 +10,26 @@ interface SignupFormProps {
 }
 
 function SignupForm({ isLogin, setIsLogin }: SignupFormProps) {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const { signup, setMessage, setDisplayMessage } = useLogContext();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e.currentTarget);
 
     const formData = new FormData(e.currentTarget);
+    const objData = Object.fromEntries(formData);
 
-    const password = formData.get('password');
-    const confirmation = formData.get('confirm-password');
-
-    if (password === confirmation) {
-      console.log('envoyé');
+    if (objData.password === objData.confirmPassword) {
+      try {
+        const success = await signup(objData);
+        if (success) {
+          console.log("La requête s'est bien passée");
+          //TODO: Revoir ceci
+          setIsLogin(true);
+        }
+      } catch (error) {
+        setMessage("Erreur lors de l'appel à signup :");
+        setDisplayMessage(true);
+      }
     }
   };
 
@@ -56,7 +68,7 @@ function SignupForm({ isLogin, setIsLogin }: SignupFormProps) {
         />
         <FormField
           type="password"
-          name="confirm-password"
+          name="confirmPassword"
           placeholder="confirm password"
           icon="solar:lock-password-linear"
           required

@@ -14,29 +14,19 @@ function LoginForm({ isLogin, setIsLogin }: LoginFormProps) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    localStorage.setItem('isLogged', 'true');
-    console.log(localStorage);
-
     const formData = new FormData(e.currentTarget);
     const objData = Object.fromEntries(formData);
+    login(objData)
 
-    var options = {
-      method: 'POST',
-      url: 'http://localhost:3000/login',
-      data: objData,
-    };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        login()
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-
-    console.log('envoyé');
+    // axios
+    //   .post('http://localhost:3000/login', objData)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     login()
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   };
 
   return (
