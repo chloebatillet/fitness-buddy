@@ -16,12 +16,7 @@ function Carrousel() {
   const fetchSessionList = async () => {
     var options = {
       method: 'GET',
-      url: 'http://localhost:3000/sessions',
-      // headers: {
-      //   'Content-Type': 'application/x-www-form-urlencoded',
-      //   Authorization:
-      //     'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY5MzIyMzUzMywiZXhwIjoxNjkzMjI3MTMzfQ.RNW3vNit_ObP4Oy6e5D6WYr87exzCLJGb-_euzcHxso',
-      // },
+      url: 'http://localhost:3000/sessions'
     };
 
     axios

@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-import Title from '../../Commons/Title/Title';
 
 import './style.scss';
 

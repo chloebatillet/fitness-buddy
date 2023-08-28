@@ -4,9 +4,11 @@ import { Icon } from '@iconify/react';
 import './style.scss';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useLogContext } from '../../../../contexts/LogContext';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { logout } = useLogContext();
 
   return (
     <>
@@ -34,8 +36,8 @@ function Header() {
                   Settings
                 </li>
               </Link>
-              <Link to={'#'}>
-                <li className="menu-item logout">
+              <Link to={'/'}>
+                <li className="menu-item logout" onClick={() => logout()}>
                   <Icon icon={'solar:login-2-outline'} className="item-icon" />
                   Log out
                 </li>

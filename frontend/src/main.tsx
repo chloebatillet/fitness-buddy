@@ -15,6 +15,8 @@ import Error from './components/Error';
 import './styles/index.scss';
 import Homepage from './components/App/Page/Outlets/Homepage/Homepage';
 import Session from './components/App/Page/Outlets/Session/Session';
+import { LogProvider } from './contexts/LogContext';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,8 +34,15 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+// root.render(
+//   <Provider store={store}>
+//     <RouterProvider router={router} />
+//   </Provider>
+// );
+
 root.render(
-  <Provider store={store}>
+  <LogProvider>
     <RouterProvider router={router} />
-  </Provider>
+  </LogProvider>
 );
+

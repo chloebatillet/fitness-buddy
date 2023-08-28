@@ -7,9 +7,10 @@ import SignupForm from './SignupForm';
 
 import './style.scss';
 
-
 function Authentication() {
   const [isLogin, setIsLogin] = useState(false);
+
+  //localStorage.setItem('isLogged', 'true');
 
   return (
     <div className="container authentication">
@@ -19,12 +20,18 @@ function Authentication() {
 
       <div className="form-container">
         {isLogin ? (
-          <LoginForm isLogin={isLogin} setIsLogin={setIsLogin} />
+          <LoginForm
+            isLogin={isLogin}
+            setIsLogin={setIsLogin}
+          />
         ) : (
-          <SignupForm isLogin={isLogin} setIsLogin={setIsLogin} />
+          <SignupForm
+            isLogin={isLogin}
+            setIsLogin={setIsLogin}
+          />
         )}
       </div>
-      <p className='credits'>Created & developed by @chloebatillet</p>
+      <p className="credits">Created & developed by @chloebatillet</p>
     </div>
   );
 }
