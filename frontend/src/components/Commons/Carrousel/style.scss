@@ -14,6 +14,10 @@
     &:active {
       background-color: rgb(#222, 0.05);
     }
+
+    &.is-disabled {
+      color: rgb(#222, 0.2);
+    }
   }
 
   .carrousel-wrapper {

@@ -51,7 +51,8 @@ function Carrousel() {
       prevIndex === sessionList.length - 1 ? prevIndex : prevIndex + 1
     );
     setCarouselPosition((prevPosition) =>
-      prevPosition === (sessionList.length -2 ) * -carouselItemWidth + 10 || currentIndex === 0
+      prevPosition === (sessionList.length - 2) * -carouselItemWidth + 10 ||
+      currentIndex === 0
         ? prevPosition
         : prevPosition - carouselItemWidth
     );
@@ -59,7 +60,12 @@ function Carrousel() {
 
   return (
     <div className="carrousel-container">
-      <div className="carrousel-btn" onClick={handleLeftArrowClick}>
+      <div
+        className={
+          currentIndex === 0 ? 'carrousel-btn is-disabled' : 'carrousel-btn'
+        }
+        onClick={handleLeftArrowClick}
+      >
         <Icon icon="solar:alt-arrow-left-linear" />
       </div>
 
@@ -80,7 +86,14 @@ function Carrousel() {
         </div>
       </div>
 
-      <div className="carrousel-btn" onClick={handleRightArrowClick}>
+      <div
+        className={
+          currentIndex === sessionList.length - 1
+            ? 'carrousel-btn is-disabled'
+            : 'carrousel-btn'
+        }
+        onClick={handleRightArrowClick}
+      >
         <Icon icon="solar:alt-arrow-right-linear" />
       </div>
     </div>
