@@ -16,7 +16,7 @@ const userController = {
       if (!user) {
         res
           .status(400)
-          .json({ message: "No match found. Try to sign up instead." });
+          .json({ error: "No match found. Try to sign up instead." });
         // Message volontairement flou pour ne pas donné trop d'indication sur la bdd
         return;
       }
@@ -26,7 +26,7 @@ const userController = {
       if (!isMatching) {
         res
           .status(400)
-          .json({ message: "No match found. Try to sign up instead." });
+          .json({ error: "No match found. Try to sign up instead." });
         // Message volontairement flou pour ne pas donné trop d'indication sur la bdd
         return;
       }

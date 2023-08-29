@@ -34,12 +34,14 @@ export function LogProvider({ children }) {
       .post('http://localhost:3000/login', objData)
       .then((response) => {
         console.log(response.data);
+        setMessage(response.data.message);
         setIsLogged(true);
         localStorage.setItem('isLogged', 'true');
       })
       .catch((error) => {
         console.error(error);
         setMessage(error.response.data.error);
+        setDisplayMessage(true);
       });
   };
 
