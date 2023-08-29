@@ -72,7 +72,7 @@ const userController = {
       const user = await User.create({ ...req.body, password: hashedPassword });
       console.log(user.getFullname());
 
-      res.json({ message: "Account created!" });
+      res.json({ message: "Account created! Please log in now." });
     } catch (error) {
       console.log(error);
       res.status(500).json(error);

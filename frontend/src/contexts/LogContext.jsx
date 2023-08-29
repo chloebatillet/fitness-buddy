@@ -10,25 +10,24 @@ export function useLogContext() {
 export function LogProvider({ children }) {
   const [isLogged, setIsLogged] = useState(false);
   const [message, setMessage] = useState('');
-  const [ displayMessage, setDisplayMessage] = useState(false);
+  const [displayMessage, setDisplayMessage] = useState(false);
 
   const signup = (objData) => {
-    axios
-        .post('http://localhost:3000/signup', objData)
-        .then((response) => {
-          console.log(response.data);
-          setMessage(response.data.message)
-        })
-            .then(() => {
-              setDisplayMessage(true);
-            })
-        .catch((error) => {
-          console.log(error);
-          setMessage(error.response.data.error)
-        }).then(()=> {
-              setDisplayMessage(true);
-            })
-  }
+    return axios
+      .post('http://localhost:3000/signup', objData)
+      .then((response) => {
+        console.log(response.data);
+        setMessage(response.data.message);
+        setDisplayMessage(true);
+        return true;
+      })
+      .catch((error) => {
+        console.log(error);
+        setMessage(error.response.data.error);
+        setDisplayMessage(true);
+        return false;
+      });
+  };
 
   const login = (objData) => {
     axios
@@ -40,7 +39,7 @@ export function LogProvider({ children }) {
       })
       .catch((error) => {
         console.error(error);
-        setMessage(error.response.data.error)
+        setMessage(error.response.data.error);
       });
   };
 
@@ -49,7 +48,6 @@ export function LogProvider({ children }) {
     localStorage.setItem('isLogged', 'false');
   };
 
-
   const logContextValue = {
     isLogged,
     setIsLogged,
@@ -57,9 +55,9 @@ export function LogProvider({ children }) {
     login,
     logout,
     message,
-    setMessage, 
-    displayMessage, 
-    setDisplayMessage
+    setMessage,
+    displayMessage,
+    setDisplayMessage,
   };
 
   return (
