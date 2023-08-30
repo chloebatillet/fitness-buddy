@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { createContext, useContext, useState } from 'react';
 import { useUserContext } from './UserContext';
 import axiosInstance from '../utils/axios';
@@ -17,8 +17,8 @@ export function LogProvider({ children }) {
   const { user, setUser } = useUserContext();
 
   const signup = async (objData) => {
-    return await axios
-      .post('http://localhost:3000/signup', objData)
+    return await axiosInstance
+      .post('/signup', objData)
       .then((response) => {
         console.log(response.data);
         setMessage(response.data.message);
@@ -34,9 +34,9 @@ export function LogProvider({ children }) {
   };
 
   const login = async (objData) => {
-
-    await axios
-      .post('http://localhost:3000/login', objData)
+    //? return ?
+    await axiosInstance
+      .post('/login', objData)
       .then((response) => {
         console.log(response.data);
         //setMessage(response.data.message);
@@ -45,7 +45,9 @@ export function LogProvider({ children }) {
         localStorage.setItem('token', response.data.token);
         console.log('1', localStorage.getItem('token'));
 
-        axiosInstance.delete
+        axiosInstance.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${response.data.token}`;
 
         setTimeout(() => {
           // vérif si le token dans le storage est celui donné par le back
@@ -68,6 +70,15 @@ export function LogProvider({ children }) {
       });
   };
 
+  const stayLogged = () => {
+    if (localStorage.getItem('isLogged')?.valueOf() === 'true') {
+      axiosInstance.defaults.headers.common[
+        'Authorization'
+      ] = `Bearer ${localStorage.getItem('token')}`;
+      setIsLogged(true);
+    }
+  }
+
   const logout = () => {
     setIsLogged(false);
     localStorage.setItem('isLogged', 'false');
@@ -80,6 +91,7 @@ export function LogProvider({ children }) {
     setIsLogged,
     signup,
     login,
+    stayLogged,
     logout,
     message,
     setMessage,
