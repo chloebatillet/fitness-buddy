@@ -4,7 +4,8 @@ import Insights from './Insights/Insights';
 import ExerciseList from './ExerciseList/ExerciseList';
 
 function Homepage() {
-  
+  console.log('3', localStorage.getItem('token'));
+
   return (
     <div className="container">
       <Section
@@ -33,9 +34,7 @@ function Homepage() {
           link: '/settings/exercise-list',
           textLink: 'Manage',
         }}
-        content={
-          < ExerciseList />
-        }
+        content={<ExerciseList />}
       />
     </div>
   );

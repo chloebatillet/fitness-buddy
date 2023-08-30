@@ -1,4 +1,4 @@
-import axios from '../../../../../../utils/axios';
+import axiosInstance from '../../../../../../utils/axios';
 import List from '../../../../../Commons/List/List';
 
 
@@ -10,8 +10,8 @@ function ExerciseList() {
 
   const fetchExerciseList = async () => {
 
-    axios
-      .get('http://localhost:3000/exercise-list')
+    await axiosInstance
+      .get('/exercise-list')
       .then(function (response) {
         setExerciseList(response.data);
       })

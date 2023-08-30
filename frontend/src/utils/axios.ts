@@ -1,10 +1,14 @@
 import axios from 'axios';
 
+console.log('dans utils', localStorage.getItem('token'));
 
-export default axios.create({
-  baseURL: 'https://orecipes-api.onrender.com/api/',
+
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:3000',
   headers: {
-    Authorization:
-      `Bearer ${localStorage.getItem('token')}`,
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
   },
 });
+
+export default axiosInstance;
+

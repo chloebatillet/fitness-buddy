@@ -1,10 +1,11 @@
+import { ReactElement } from 'react';
 import Title, { TitleProps } from '../Title/Title';
 
 import './style.scss';
 
 interface SectionProps {
   titleDetails: TitleProps;
-  content: JSX.IntrinsicElements;
+  content: ReactElement;
 }
 
 function Section({ titleDetails, content }: SectionProps) {

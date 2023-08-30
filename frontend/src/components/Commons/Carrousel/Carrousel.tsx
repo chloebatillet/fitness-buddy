@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react';
 
 import './style.scss';
 import { useState, useEffect } from 'react';
-import axios from '../../../utils/axios';
+import axiosInstance from '../../../utils/axios';
 
 function Carrousel() {
   const [sessionList, setSessionList] = useState([]);
@@ -14,8 +14,10 @@ function Carrousel() {
   const carouselItemWidth = 88;
 
   const fetchSessionList = async () => {
-    axios
-      .get('http://localhost:3000/sessions')
+    console.log('coucou fetch session');
+    
+    await axiosInstance
+      .get('/sessions')
       .then(function (response) {
         setSessionList(response.data);
       })

@@ -25,16 +25,6 @@ function LoginForm({ isLogin, setIsLogin }: LoginFormProps) {
     } catch (error) {
       console.error(error)
     }
-
-    // axios
-    //   .post('http://localhost:3000/login', objData)
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     login()
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
   };
 
   return (

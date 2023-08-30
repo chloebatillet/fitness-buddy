@@ -1,7 +1,7 @@
 import axios from 'axios';
-import axiosInstance from '../utils/axios'
 import { createContext, useContext, useState } from 'react';
 import { useUserContext } from './UserContext';
+import axiosInstance from '../utils/axios';
 
 const LogContext = createContext();
 
@@ -34,6 +34,7 @@ export function LogProvider({ children }) {
   };
 
   const login = async (objData) => {
+
     await axios
       .post('http://localhost:3000/login', objData)
       .then((response) => {
@@ -42,15 +43,21 @@ export function LogProvider({ children }) {
 
         // stockage du token
         localStorage.setItem('token', response.data.token);
+        console.log('1', localStorage.getItem('token'));
+
+        axiosInstance.delete
 
         setTimeout(() => {
           // vérif si le token dans le storage est celui donné par le back
           if (localStorage.getItem('token') === response.data.token) {
-            setIsLogged(true);
-            localStorage.setItem('isLogged', 'true');
             const user = response.data.user;
             localStorage.setItem('user', JSON.stringify({ user }));
             setUser(user);
+
+            console.log('2', localStorage.getItem('token'));
+
+            setIsLogged(true);
+            localStorage.setItem('isLogged', 'true');
           }
         }, 2000);
       })
