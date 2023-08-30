@@ -20,7 +20,6 @@ export function LogProvider({ children }) {
     return await axiosInstance
       .post('/signup', objData)
       .then((response) => {
-        console.log(response.data);
         setMessage(response.data.message);
         setDisplayMessage(true);
         return true;
@@ -38,12 +37,9 @@ export function LogProvider({ children }) {
     await axiosInstance
       .post('/login', objData)
       .then((response) => {
-        console.log(response.data);
-        //setMessage(response.data.message);
 
         // stockage du token
         localStorage.setItem('token', response.data.token);
-        console.log('1', localStorage.getItem('token'));
 
         axiosInstance.defaults.headers.common[
           'Authorization'
@@ -55,8 +51,6 @@ export function LogProvider({ children }) {
             const user = response.data.user;
             localStorage.setItem('user', JSON.stringify({ user }));
             setUser(user);
-
-            console.log('2', localStorage.getItem('token'));
 
             setIsLogged(true);
             localStorage.setItem('isLogged', 'true');

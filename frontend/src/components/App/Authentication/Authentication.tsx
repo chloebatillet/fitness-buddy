@@ -10,7 +10,7 @@ import Snackbar from '../../Commons/Snackbar/Snackbar';
 import { useLogContext } from '../../../contexts/LogContext';
 
 function Authentication() {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const { message } = useLogContext();
 
   return (
@@ -32,7 +32,6 @@ function Authentication() {
 
       <Snackbar
         message={message}
-        //display={false}
       />
     </>
   );

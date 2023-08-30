@@ -1,11 +1,9 @@
-import Carrousel from '../../../../Commons/Carrousel/Carrousel';
 import Section from '../../../../Commons/Section/Section';
 import Insights from './Insights/Insights';
 import ExerciseList from './ExerciseList/ExerciseList';
+import LastSessions from './LastSession/LastSessions';
 
 function Homepage() {
-  console.log('3', localStorage.getItem('token'));
-
   return (
     <div className="container">
       <Section
@@ -14,7 +12,7 @@ function Homepage() {
           text: 'my last sessions',
           icon: 'ph:barbell',
         }}
-        content={<Carrousel />}
+        content={<LastSessions />}
       />
       <Section
         titleDetails={{

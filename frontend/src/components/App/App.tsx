@@ -4,7 +4,6 @@ import Page from './Page/Page';
 import './App.scss';
 import { useLogContext } from '../../contexts/LogContext';
 import { useEffect } from 'react';
-import axiosInstance from '../../utils/axios';
 
 function App() {
   //* A mettre sur le log out et expiration du token

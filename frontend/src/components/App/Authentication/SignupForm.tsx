@@ -1,7 +1,5 @@
-import axios from 'axios';
 import Button from '../../Commons/Button/Button';
 import FormField from '../../Commons/FormField/FormField';
-import { useState } from 'react';
 import { useLogContext } from '../../../contexts/LogContext';
 
 interface SignupFormProps {
@@ -21,17 +19,14 @@ function SignupForm({ isLogin, setIsLogin }: SignupFormProps) {
     if (objData.password === objData.confirmPassword) {
       try {
         const success = await signup(objData);
-        console.log(await success);
         
         if (success) {
-          console.log("La requête s'est bien passée");
-          //TODO: Revoir ceci
           setIsLogin(true);
         } else {
           console.log('echec');
         }
       } catch (error) {
-        setMessage("Erreur lors de l'appel à signup :");
+        setMessage("Erreur lors de l'appel à signup");
         setDisplayMessage(true);
       }
     }

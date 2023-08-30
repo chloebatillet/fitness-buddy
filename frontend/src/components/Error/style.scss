@@ -1,0 +1,74 @@
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+
+  background-color: #efefef;
+  font-size: 0rem;
+  font-weight: 900;
+  gap: 1rem;
+  font-size: 3rem;
+
+  animation: rainbow infinite 1.5s;
+
+  .error-icon {
+    font-size: 6rem;
+    position: relative;
+
+    .tear-icon {
+      font-size: 1.5rem;
+      //color: aqua;
+      position: absolute;
+      top: 2rem;
+      right: 0.5rem;
+      animation: tear infinite 2s;
+    }
+  }
+}
+
+@keyframes rainbow {
+  0% {
+    color: red;
+  }
+  12% {
+    color: orange;
+  }
+  25% {
+    color: yellow;
+  }
+  37% {
+    color: greenyellow;
+  }
+  50% {
+    color: cyan;
+  }
+  62% {
+    color: deepskyblue;
+  }
+  75% {
+    color: rgb(162, 29, 219);
+  }
+  87% {
+    color: violet;
+  }
+  100% {
+    color: hotpink;
+  }
+}
+
+@keyframes tear {
+  0% {
+    top: 2rem;
+  }
+  50% {
+    top: 3rem;
+  }
+  60% {
+    display: none;
+  }
+  100% {
+    display: none;
+  }
+}

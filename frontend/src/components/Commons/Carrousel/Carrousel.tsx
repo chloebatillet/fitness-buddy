@@ -3,32 +3,25 @@ import Button from '../Button/Button';
 import { Icon } from '@iconify/react';
 
 import './style.scss';
-import { useState, useEffect } from 'react';
-import axiosInstance from '../../../utils/axios';
+import { useState } from 'react';
 
-function Carrousel() {
-  const [sessionList, setSessionList] = useState([]);
+interface Session {
+  id: number;
+  user_id: number;
+  created_at: string;
+  updated_at: string;
+}
+
+interface CarrouselProps {
+  list: Session[];
+  emptyMessage?: string;
+}
+
+function Carrousel({ list, emptyMessage }: CarrouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [carouselPosition, setCarouselPosition] = useState(10);
 
   const carouselItemWidth = 88;
-
-  const fetchSessionList = async () => {
-    console.log('coucou fetch session');
-    
-    await axiosInstance
-      .get('/sessions')
-      .then(function (response) {
-        setSessionList(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  };
-
-  useEffect(() => {
-    fetchSessionList();
-  }, []);
 
   const handleLeftArrowClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? 0 : prevIndex - 1));
@@ -39,10 +32,10 @@ function Carrousel() {
 
   const handleRightArrowClick = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === sessionList.length - 1 ? prevIndex : prevIndex + 1
+      prevIndex === list.length - 1 ? prevIndex : prevIndex + 1
     );
     setCarouselPosition((prevPosition) =>
-      prevPosition === (sessionList.length - 2) * -carouselItemWidth + 10 ||
+      prevPosition === (list.length - 2) * -carouselItemWidth + 10 ||
       currentIndex === 0
         ? prevPosition
         : prevPosition - carouselItemWidth
@@ -51,42 +44,52 @@ function Carrousel() {
 
   return (
     <div className="carrousel-container">
-      <div
-        className={
-          currentIndex === 0 ? 'carrousel-btn is-disabled' : 'carrousel-btn'
-        }
-        onClick={handleLeftArrowClick}
-      >
-        <Icon icon="solar:alt-arrow-left-linear" />
-      </div>
+      {list.length === 0 ? (
+        <p>{emptyMessage || 'This section is empty'}</p>
+      ) : (
+        <>
+          <div
+            className={
+              currentIndex === 0 ? 'carrousel-btn is-disabled' : 'carrousel-btn'
+            }
+            onClick={handleLeftArrowClick}
+          >
+            <Icon icon="solar:alt-arrow-left-linear" />
+          </div>
 
-      <div className="carrousel-wrapper">
-        <div
-          className="carrousel-content"
-          style={{ transform: `translateX(${carouselPosition}px)` }}
-        >
-          {sessionList.map((e, index) => (
-            <Link
-              key={e.created_at}
-              to={`/session/${e.id}`}
-              className={index === currentIndex ? `is-active` : ''}
+          <div className="carrousel-wrapper">
+            <div
+              className="carrousel-content"
+              style={{ transform: `translateX(${carouselPosition}px)` }}
             >
-              <Button type={'button'} value={e.id} onClick={undefined}></Button>
-            </Link>
-          ))}
-        </div>
-      </div>
+              {list.map((e, index) => (
+                <Link
+                  key={e.created_at}
+                  to={`/session/${e.id}`}
+                  className={index === currentIndex ? `is-active` : ''}
+                >
+                  <Button
+                    type={'button'}
+                    value={e.created_at}
+                    onClick={undefined}
+                  ></Button>
+                </Link>
+              ))}
+            </div>
+          </div>
 
-      <div
-        className={
-          currentIndex === sessionList.length - 1
-            ? 'carrousel-btn is-disabled'
-            : 'carrousel-btn'
-        }
-        onClick={handleRightArrowClick}
-      >
-        <Icon icon="solar:alt-arrow-right-linear" />
-      </div>
+          <div
+            className={
+              currentIndex === list.length - 1 || list.length === 0
+                ? 'carrousel-btn is-disabled'
+                : 'carrousel-btn'
+            }
+            onClick={handleRightArrowClick}
+          >
+            <Icon icon="solar:alt-arrow-right-linear" />
+          </div>
+        </>
+      )}
     </div>
   );
 }

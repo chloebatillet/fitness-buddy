@@ -1,8 +1,6 @@
 import axiosInstance from '../../../../../../utils/axios';
 import List from '../../../../../Commons/List/List';
 
-
-
 import { useEffect, useState } from 'react';
 
 function ExerciseList() {
