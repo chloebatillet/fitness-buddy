@@ -14,15 +14,9 @@ function Carrousel() {
   const carouselItemWidth = 88;
 
   const fetchSessionList = async () => {
-    var options = {
-      method: 'GET',
-      url: 'http://localhost:3000/sessions'
-    };
-
     axios
-      .request(options)
+      .get('http://localhost:3000/sessions')
       .then(function (response) {
-        console.log(response.data);
         setSessionList(response.data);
       })
       .catch(function (error) {
@@ -32,7 +26,7 @@ function Carrousel() {
 
   useEffect(() => {
     fetchSessionList();
-  }, [setSessionList]);
+  }, []);
 
   const handleLeftArrowClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? 0 : prevIndex - 1));

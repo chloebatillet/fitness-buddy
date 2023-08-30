@@ -3,12 +3,26 @@ import { Icon } from '@iconify/react';
 
 import './style.scss';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLogContext } from '../../../../contexts/LogContext';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const { logout } = useLogContext();
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setTimeout(() => {
+      logout();
+      // ajouter une page de chargement
+      navigate('/logout');
+    }, 1000);
+
+    setTimeout(() => {
+      navigate('/');
+    }, 3000);
+  };
 
   return (
     <>
@@ -37,7 +51,7 @@ function Header() {
                 </li>
               </Link>
               <Link to={'/'}>
-                <li className="menu-item logout" onClick={() => logout()}>
+                <li className="menu-item logout" onClick={handleLogout}>
                   <Icon icon={'solar:login-2-outline'} className="item-icon" />
                   Log out
                 </li>

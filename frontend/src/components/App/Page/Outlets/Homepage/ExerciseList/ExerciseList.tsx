@@ -9,15 +9,10 @@ function ExerciseList() {
   const [exerciseList, setExerciseList] = useState([]);
 
   const fetchExerciseList = async () => {
-    var options = {
-      method: 'GET',
-      url: 'http://localhost:3000/exercise-list',
-    };
 
     axios
-      .request(options)
+      .get('http://localhost:3000/exercise-list')
       .then(function (response) {
-        console.log(response.data);
         setExerciseList(response.data);
       })
       .catch(function (error) {
@@ -29,10 +24,7 @@ function ExerciseList() {
     fetchExerciseList();
   }, [setExerciseList]);
 
-  const list = exerciseList.map((e: any) => {
-    console.log(e);
-    console.log(e.exercises);
-    
+  const list = exerciseList.map((e: any) => {    
     return <List key={e.name} name={e.name} items={e.exercises} />;
   });
 

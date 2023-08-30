@@ -2,6 +2,7 @@ import axios from 'axios';
 import Button from '../../Commons/Button/Button';
 import FormField from '../../Commons/FormField/FormField';
 import { useLogContext } from '../../../contexts/LogContext';
+import { useNavigate } from 'react-router-dom';
 
 interface LoginFormProps {
   isLogin: boolean;
@@ -10,13 +11,20 @@ interface LoginFormProps {
 
 function LoginForm({ isLogin, setIsLogin }: LoginFormProps) {
   const { login } = useLogContext();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
     const objData = Object.fromEntries(formData);
-    login(objData)
+
+    try {
+      await login(objData);
+      navigate('/');
+    } catch (error) {
+      console.error(error)
+    }
 
     // axios
     //   .post('http://localhost:3000/login', objData)

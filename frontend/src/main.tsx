@@ -16,7 +16,7 @@ import './styles/index.scss';
 import Homepage from './components/App/Page/Outlets/Homepage/Homepage';
 import Session from './components/App/Page/Outlets/Session/Session';
 import { LogProvider } from './contexts/LogContext';
-
+import { UserProvider } from './contexts/UserContext';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +34,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+
 // root.render(
 //   <Provider store={store}>
 //     <RouterProvider router={router} />
@@ -41,8 +42,9 @@ const root = ReactDOM.createRoot(
 // );
 
 root.render(
-  <LogProvider>
-    <RouterProvider router={router} />
-  </LogProvider>
+  <UserProvider>
+    <LogProvider>
+      <RouterProvider router={router} />
+    </LogProvider>
+  </UserProvider>
 );
-
