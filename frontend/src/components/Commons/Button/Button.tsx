@@ -22,16 +22,20 @@ function Button({
   value,
   icon,
   autofocus,
-  isNo, style,
+  isNo,
+  style,
   onClick,
+  ...other
 }: ButtonProps) {
   return (
     <button
-      className={`btn ${isNo? "is-no" : ""}`}
+      className={`btn ${isNo ? 'is-no' : ''}`}
       type={type}
+      value={value}
       autoFocus={autofocus}
       style={{ ...style }}
       onClick={onClick}
+      {...other}
     >
       {icon && <Icon icon={icon} color={style?.color} />}
       {value}

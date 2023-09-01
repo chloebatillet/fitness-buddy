@@ -3,7 +3,7 @@ import './style.scss';
 import { Link } from 'react-router-dom';
 
 export interface TitleProps {
-  level: string;
+  level: '1' | '2' | '3' | '4' | '5' | '6';
   text: string;
   icon?: string;
   color?: string;

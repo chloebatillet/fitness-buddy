@@ -1,0 +1,23 @@
+.set-list-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  & input {
+    width: 3rem;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  & input::-webkit-outer-spin-button,
+  & input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .set-list-element-div {
+    display: flex;
+    align-items: end;
+    gap: 0.5rem;
+  }
+}

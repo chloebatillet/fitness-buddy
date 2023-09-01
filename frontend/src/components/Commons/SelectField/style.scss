@@ -1,0 +1,36 @@
+.select-field-group {
+  position: relative;
+
+  .select-field-icon {
+    position: absolute;
+    right: 5%;
+    top: 15%;
+    color: rgb(#222, 0.2);
+    z-index: 1;
+    font-size: 1.5rem;
+  }
+
+  .select-field {
+    all: unset;
+    background-color: #fff;
+    border: solid 1px rgb(#222, 0.2);
+    border-radius: 6px;
+    width: 80%;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    //display: block;
+    padding-right: 2rem;
+    color: #222;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgb(#222, 0.2);
+    position: relative;
+
+    &:focus {
+      border: solid #84dcc6 1px;
+    }
+
+    &:focus ~ .select-field-icon {
+      color: #84dcc6;
+    }
+  }
+}

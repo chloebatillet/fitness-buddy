@@ -12,7 +12,7 @@ function Footer() {
   const handleStart = () => {
     setIsLaunched(!isLaunched);
     console.log('redirection');
-    navigate('/session/1');
+    navigate('/new-session');
   };
 
   const handleStop = () => {

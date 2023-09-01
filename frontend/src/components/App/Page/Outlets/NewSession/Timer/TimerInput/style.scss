@@ -1,0 +1,14 @@
+.set-timer-input-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+
+  .set-timer-input {
+    text-align: center;
+    all: unset;
+    font-size: 2rem;
+    width: 3rem;
+  }
+}

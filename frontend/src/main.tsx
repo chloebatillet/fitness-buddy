@@ -17,6 +17,7 @@ import Homepage from './components/App/Page/Outlets/Homepage/Homepage';
 import Session from './components/App/Page/Outlets/Session/Session';
 import { LogProvider } from './contexts/LogContext';
 import { UserProvider } from './contexts/UserContext';
+import NewSession from './components/App/Page/Outlets/NewSession/NewSession';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,7 +25,7 @@ const router = createBrowserRouter(
       <Route errorElement={<Error />}>
         <Route index element={<Homepage />} />
         <Route path="/session/:id" element={<Session />} />
-        <Route path="/new-session" element={<Session />} />
+        <Route path="/new-session" element={<NewSession />} />
       </Route>
     </Route>
   )
