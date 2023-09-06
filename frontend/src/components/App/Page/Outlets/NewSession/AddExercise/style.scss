@@ -3,16 +3,26 @@
   flex-direction: column;
   gap: 2rem;
 
-  .set-list-item {
-    margin-left: 1rem;
-    margin-top: 0.5rem;
-    padding-bottom: 0.2rem;
-    border-bottom: solid 1px rgb(#222, 0.1);
+  .exercise-box-content {
+    display: block;
+    transition: all 0.3s ease-out;
+  }
+
+  .set-list {
+    list-style: decimal;
+
+    .set-list-item {
+      margin-left: 1rem;
+      margin-top: 0.5rem;
+      padding-bottom: 0.2rem;
+      border-bottom: solid 1px rgb(#222, 0.1);
+    }
   }
 
   .add-set-button {
     color: rgb(#222, 0.2);
     margin-top: 0.5rem;
+    margin-bottom: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 6px;
     transition: all 0.3s ease-in-out;

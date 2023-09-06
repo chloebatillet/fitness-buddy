@@ -16,7 +16,8 @@ function Box({ children, backgroundColor, color, align }: BoxProps) {
     color: `${color}`,
     display: 'flex',
     flexDirection: 'column',
-    textAlign: `${align || "center"}`,
+    textAlign: `${align || 'center'}`,
+    transition: 'all 0.3s ease',
   };
   return (
     <div className="box-container" style={{ ...style }}>

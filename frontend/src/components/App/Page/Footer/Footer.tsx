@@ -3,15 +3,17 @@ import { useNavigate } from 'react-router-dom';
 
 import './style.scss';
 import Modal from '../../../Commons/Modal/Modal';
+import { useCurrentSessionContext } from '../../../../contexts/CurrentSessionContext';
 
 function Footer() {
-  const [isLaunched, setIsLaunched] = useState(false);
+  const { createSession, endSession } = useCurrentSessionContext();
+  const sessionIsStarted =
+    localStorage.getItem('sessionIsStarted')?.valueOf() === 'true';
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleStart = () => {
-    setIsLaunched(!isLaunched);
-    console.log('redirection');
+    createSession();
     navigate('/new-session');
   };
 
@@ -20,14 +22,13 @@ function Footer() {
   };
 
   const handleConfirm = () => {
-    setIsLaunched(false);
+    endSession();
     setIsOpen(false);
-    console.log('redirection');
     navigate(-1);
   };
 
   const handleClick = () => {
-    !isLaunched ? handleStart() : handleStop();
+    sessionIsStarted ? handleStop() : handleStart();
   };
 
   return (
@@ -35,7 +36,7 @@ function Footer() {
       <div className="footer">
         <div className="container">
           <button className="footer-btn" onClick={handleClick}>
-            {isLaunched ? 'FINISH' : 'START'}
+            {sessionIsStarted ? 'FINISH' : 'START'}
           </button>
         </div>
       </div>
@@ -47,7 +48,7 @@ function Footer() {
           message={'Are you sure you want to finish this session?'}
         />
       )}
-      {/* {isLaunched && <Redirect to="/nouvelle-page" />} */}
+      {/* {IsStarted && <Redirect to="/nouvelle-page" />} */}
     </>
   );
 }

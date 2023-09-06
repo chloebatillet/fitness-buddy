@@ -2,6 +2,7 @@
 import { createContext, useContext, useState } from 'react';
 import { useUserContext } from './UserContext';
 import axiosInstance from '../utils/axios';
+import { useCurrentSessionContext } from './CurrentSessionContext';
 
 const LogContext = createContext();
 
@@ -15,6 +16,7 @@ export function LogProvider({ children }) {
   const [displayMessage, setDisplayMessage] = useState(false);
 
   const { user, setUser } = useUserContext();
+  const { endSession } = useCurrentSessionContext();
 
   const signup = async (objData) => {
     return await axiosInstance
@@ -37,7 +39,6 @@ export function LogProvider({ children }) {
     await axiosInstance
       .post('/login', objData)
       .then((response) => {
-
         // stockage du token
         localStorage.setItem('token', response.data.token);
 
@@ -71,10 +72,11 @@ export function LogProvider({ children }) {
       ] = `Bearer ${localStorage.getItem('token')}`;
       setIsLogged(true);
     }
-  }
+  };
 
   const logout = () => {
     setIsLogged(false);
+    endSession();
     localStorage.setItem('isLogged', 'false');
     localStorage.removeItem('token');
     localStorage.removeItem('user');

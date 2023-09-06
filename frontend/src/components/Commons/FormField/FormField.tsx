@@ -12,9 +12,14 @@ interface StyleProps {
 interface FormFieldProps {
   type: string;
   name: string;
+  /**
+   * Set value + disabled to display only
+   */
+  value?: string | number;
   placeholder: string;
   icon?: string;
   required?: boolean;
+  disabled?: boolean;
   autoFocus?: boolean;
   style?: StyleProps;
 }
@@ -22,9 +27,11 @@ interface FormFieldProps {
 const FormField = ({
   type,
   name,
+  value,
   placeholder,
   icon,
   required,
+  disabled,
   autoFocus,
   style,
 }: FormFieldProps) => {
@@ -35,14 +42,15 @@ const FormField = ({
       <input
         type={type}
         name={name}
-        id={name}
+        //id={name}
         required={required}
         autoFocus={autoFocus}
         style={style?.input}
-        value={inputValue}
+        value={inputValue || value}
+        disabled={disabled}
         onChange={(e) => setInputValue(e.currentTarget.value)}
       ></input>
-      <Icon icon={icon} className='input-icon'/>
+      <Icon icon={icon} className="input-icon" />
 
       <span className="highlight"></span>
       <span className="bar"></span>

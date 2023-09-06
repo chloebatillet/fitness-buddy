@@ -12,10 +12,16 @@ interface SelectFieldProps {
   selectName: string;
   selectId: string;
   icon: string;
+  required?: boolean;
 }
 
-function SelectField({ list, selectName, selectId, icon }: SelectFieldProps) {
-
+function SelectField({
+  list,
+  selectName,
+  selectId,
+  icon,
+  required,
+}: SelectFieldProps) {
   const selectList = list.map((e) => {
     return e.exercises?.length !== 0 ? (
       <optgroup key={e.name} label={e.name}>
@@ -34,8 +40,13 @@ function SelectField({ list, selectName, selectId, icon }: SelectFieldProps) {
 
   return (
     <div className="select-field-group">
-      <select className="select-field" name={selectName} id={selectId}>
-        <option value={''}>-- Select an exercise --</option>
+      <select
+        className="select-field"
+        name={selectName}
+        id={selectId}
+        required={required}
+      >
+        <option value={''} hidden>-- Choose an exercise --</option>
         {selectList}
       </select>
       <Icon icon={icon} className="select-field-icon" />

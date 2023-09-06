@@ -1,0 +1,36 @@
+.exercise-section {
+
+  margin-top: 1rem;
+  .exercise-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .unroll-icon {
+      font-size: 2rem;
+      margin-right: -0.8rem;
+      transition: all 0.3s ease-out;
+    }
+  }
+
+  .set-list {
+    list-style: decimal;
+
+    .set-list-item {
+      margin-left: 1rem;
+      margin-top: 0.5rem;
+      padding-bottom: 0.2rem;
+      border-bottom: solid 1px rgb(#222, 0.1);
+    }
+  }
+
+  &.closed {
+    .unroll-icon {
+      transform: rotate(-90deg);
+    }
+
+    .exercise-box-content {
+      display: none;
+    }
+  }
+}

@@ -32,6 +32,8 @@ const sessionController = {
             model: Exercise,
             include: {
               association: "exercise_details",
+              where: { session_id: req.params.id },
+              //order: [["created_at", "DESC"]],
               include: {
                 association: "exercise_sets",
               },
@@ -75,32 +77,46 @@ const sessionController = {
 
   addExerciseToSession: async (req, res) => {
     try {
-      const { exercise_id } = req.body;
+      const { exercise_id, nb_reps, weight_lifted } = req.body;
       const { id } = req.params;
 
-      await SessionExercise.addExercise(id, exercise_id);
+      const newExercise = await SessionExercise.addExercise(id, exercise_id);
 
-      res.status(201).json({ message: "Exercise added to session!" });
+      nb_reps.map(async (e, index) => {
+        console.log(e, weight_lifted[index]);
+        await Set.addSet(newExercise.id, e, weight_lifted[index]);
+      });
+
+      res.status(201).json({
+        // sessionExercise_id: newExercise.id,
+        message: "Exercise added to session!",
+      });
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
     }
   },
 
-  addSetToExercise: async (req, res) => {
-    try {
-      const { nb_reps, weight_lifted } = req.body;
-      const { session_exercise_id } = req.params;
-      console.log(req.body);
+  // addSetToExercise: async (req, res) => {
+  //   try {
+  //     const { nb_reps, weight_lifted } = req.body;
+  //     const { session_exercise_id } = req.params;
+  //     console.log("--------------------->");
+  //     //console.log(nb_reps);
 
-      await Set.addSet(session_exercise_id, nb_reps, weight_lifted);
+  //     nb_reps.map(async (e, index) => {
+  //       console.log(e, weight_lifted[index]);
+  //       await Set.addSet(session_exercise_id, e, weight_lifted[index]);
+  //     });
 
-      res.status(201).json({ message: "Set added!" });
-    } catch (error) {
-      console.log(error);
-      res.status(500).json(error);
-    }
-  },
+  //     //await Set.addSet(session_exercise_id, nb_reps, weight_lifted);
+
+  //     res.status(201).json({ message: "Set added!" });
+  //   } catch (error) {
+  //     console.log(error);
+  //     res.status(500).json(error);
+  //   }
+  // },
 
   // quand on clique sur la ptite flèche pour dérouler
   getOneExerciceFromSession: async (req, res) => {

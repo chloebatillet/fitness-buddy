@@ -26,10 +26,10 @@ router.delete("/session/:id", sessionController.delete);
  *  - second, add sets to it (loop?)
  */
 router.post("/session/:id/exercise", sessionController.addExerciseToSession);
-router.post(
-  "/session/session-exercise/:session_exercise_id/set",
-  sessionController.addSetToExercise
-);
+// router.post(
+//   "/session/session-exercise/:session_exercise_id/set",
+//   sessionController.addSetToExercise
+// );
 router.get(
   "/session/session-exercise/:id",
   sessionController.getOneExerciceFromSession
