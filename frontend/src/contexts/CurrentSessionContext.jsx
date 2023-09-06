@@ -1,6 +1,7 @@
 // import axios from 'axios';
 import { createContext, useContext, useState } from 'react';
 import axiosInstance from '../utils/axios';
+import { useMessageContext } from './MessageContext';
 
 const CurrentSessionContext = createContext();
 
@@ -11,7 +12,6 @@ export function useCurrentSessionContext() {
 export function CurrentSessionProvider({ children }) {
   const [isStarted, setIsStarted] = useState(false);
   const [sessionId, setSessionId] = useState(0);
-  const [sessionExerciseId, setSessionExerciseId] = useState(0);
   // pour sauvegarder au refresh plus tard
   // const [exerciseForm, setExerciseForm] = useState({
   //   exercise_id: '',
@@ -19,6 +19,8 @@ export function CurrentSessionProvider({ children }) {
   //   weight_lifted: [],
   // });
   const [allExercises, setAllExercises] = useState([]);
+
+  const { sendMessage } = useMessageContext();
 
   const createSession = async () => {
     try {
@@ -61,63 +63,37 @@ export function CurrentSessionProvider({ children }) {
         weight_lifted: [],
       };
 
+      console.log('OBJDATA ------------------', objData);
+
       for (const key in objData) {
-        if (key.includes('nb_reps')) {
+        if (key.includes('nb_reps') && objData[key].trim().length !== 0) {
           dataToSend['nb_reps'].push(objData[key]);
         }
-        if (key.includes('weight_lifted')) {
+        if (key.includes('weight_lifted') && objData[key].trim().length !== 0) {
           dataToSend['weight_lifted'].push(objData[key]);
         }
       }
 
-      console.log(dataToSend);
+      if (
+        dataToSend.nb_reps.length === 0 ||
+        dataToSend.weight_lifted.length === 0
+      ) {
+        sendMessage('You cannot add empty fields.');
+        return;
+      }
 
       // Tout envoyer sur la route pour addExercise
-      const { data } = await axiosInstance.post(
+      await axiosInstance.post(
         `/session/${localStorage.getItem('sessionId')}/exercise`,
         dataToSend
       );
-      console.log(data);
-      //console.log(data.id);
-
-      //setSessionExerciseId(data.id);
-      //console.log(sessionExerciseId);
 
       displayExercises();
     } catch (error) {
       console.log(error);
+      sendMessage(error.response.data.error);
     }
   };
-
-  // const addSets = async (objData) => {
-  //   try {
-  //     const dataToSend = {
-  //       exercise_id: objData.exercise_id,
-  //       nb_reps: [],
-  //       weight_lifted: [],
-  //     };
-
-  //     for (const key in objData) {
-  //       if (key.includes('nb_reps')) {
-  //         dataToSend['nb_reps'].push(objData[key]);
-  //       }
-  //       if (key.includes('weight_lifted')) {
-  //         dataToSend['weight_lifted'].push(objData[key]);
-  //       }
-  //     }
-
-  //     console.log(dataToSend);
-
-  //     const { data } = await axiosInstance.post(
-  //       `/session/session-exercise/${sessionExerciseId}/set`
-  //     );
-  //     console.log(data);
-
-  //     await displayExercises();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const currentSessionContextValue = {
     isStarted,
@@ -129,7 +105,6 @@ export function CurrentSessionProvider({ children }) {
     createSession,
     endSession,
     addExercise,
-    // addSets,
   };
 
   return (

@@ -3,6 +3,7 @@ import { createContext, useContext, useState } from 'react';
 import { useUserContext } from './UserContext';
 import axiosInstance from '../utils/axios';
 import { useCurrentSessionContext } from './CurrentSessionContext';
+import { useMessageContext } from './MessageContext';
 
 const LogContext = createContext();
 
@@ -12,9 +13,8 @@ export function useLogContext() {
 
 export function LogProvider({ children }) {
   const [isLogged, setIsLogged] = useState(false);
-  const [message, setMessage] = useState('');
-  const [displayMessage, setDisplayMessage] = useState(false);
 
+  const { sendMessage } = useMessageContext();
   const { user, setUser } = useUserContext();
   const { endSession } = useCurrentSessionContext();
 
@@ -22,14 +22,12 @@ export function LogProvider({ children }) {
     return await axiosInstance
       .post('/signup', objData)
       .then((response) => {
-        setMessage(response.data.message);
-        setDisplayMessage(true);
+        sendMessage(response.data.message);
         return true;
       })
       .catch((error) => {
         console.log(error);
-        setMessage(error.response.data.error);
-        setDisplayMessage(true);
+        sendMessage(error.response.data.error);
         return false;
       });
   };
@@ -60,8 +58,7 @@ export function LogProvider({ children }) {
       })
       .catch((error) => {
         console.error(error);
-        setMessage(error.response.data.error);
-        setDisplayMessage(true);
+        sendMessage(error.response.data.error);
       });
   };
 
@@ -89,10 +86,6 @@ export function LogProvider({ children }) {
     login,
     stayLogged,
     logout,
-    message,
-    setMessage,
-    displayMessage,
-    setDisplayMessage,
   };
 
   return (

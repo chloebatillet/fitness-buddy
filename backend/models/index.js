@@ -1,17 +1,19 @@
 const {
-  User,
-  Session,
-  Exercise,
   Bodypart,
+  Exercise,
+  Favourite,
+  Session,
   SessionExercise,
   Set,
+  User,
 } = require("./associations");
 
 module.exports = {
-  User,
-  Session,
-  Exercise,
   Bodypart,
+  Exercise,
+  Favourite,
+  Session,
   SessionExercise,
   Set,
+  User,
 };

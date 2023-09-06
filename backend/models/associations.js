@@ -1,9 +1,10 @@
-const User = require("./User");
-const Session = require("./Session");
-const Exercise = require("./Exercise");
 const Bodypart = require("./Bodypart");
+const Exercise = require("./Exercise");
+const Favourite = require("./Favourite");
+const Session = require("./Session");
 const SessionExercise = require("./SessionExercise");
 const Set = require("./Set");
+const User = require("./User");
 
 // Associations
 User.hasMany(Session);
@@ -45,11 +46,22 @@ SessionExercise.belongsTo(Exercise, {
   as: "exercise_name",
 });
 
+User.belongsToMany(Exercise, {
+  foreignKey: "user_id",
+  through: "favourites",
+});
+
+Exercise.belongsToMany(User, {
+  foreignKey: "exercise_id",
+  through: "favourites",
+});
+
 module.exports = {
-  User,
-  Session,
-  Exercise,
   Bodypart,
+  Exercise,
+  Favourite,
+  Session,
   SessionExercise,
   Set,
+  User,
 };

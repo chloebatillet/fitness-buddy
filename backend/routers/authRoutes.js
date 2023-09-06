@@ -30,10 +30,6 @@ router.post("/session/:id/exercise", sessionController.addExerciseToSession);
 //   "/session/session-exercise/:session_exercise_id/set",
 //   sessionController.addSetToExercise
 // );
-router.get(
-  "/session/session-exercise/:id",
-  sessionController.getOneExerciceFromSession
-);
 
 /**
  * Exercise list
@@ -45,6 +41,9 @@ router.patch("/exercise-list/:id", exerciseController.update);
 router.delete("/exercise-list/:id", exerciseController.delete);
 
 // TODO: AJOUTER LES EXOS FAVORIS
+router.get("/exercises/favourites");
+router.post("/exercises/:id/favourites");
+router.delete("/exercises/:id/favourites");
 
 // Liste des categories, liée aux exercises.
 // Seulement la get sera utilisée par l'utilisateur pour créer la liste déroulante lors de la création d'un nouvel exo

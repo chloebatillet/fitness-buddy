@@ -23,7 +23,7 @@ function AddExercise({ setIsOpen }: AddExerciseProps) {
   const [exercises, setExercices] = useState([]);
   const [allSet, setAllSet] = useState([<SetInput />]);
 
-  const formRef = useRef(null);
+  const formRef = useRef();
 
   const { addExercise, displayExercises } = useCurrentSessionContext();
 

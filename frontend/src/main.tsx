@@ -19,6 +19,7 @@ import { LogProvider } from './contexts/LogContext';
 import { UserProvider } from './contexts/UserContext';
 import NewSession from './components/App/Page/Outlets/NewSession/NewSession';
 import { CurrentSessionProvider } from './contexts/CurrentSessionContext';
+import { MessageProvider } from './contexts/MessageContext';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,11 +44,13 @@ const root = ReactDOM.createRoot(
 // );
 
 root.render(
-  <UserProvider>
-    <CurrentSessionProvider>
-      <LogProvider>
-        <RouterProvider router={router} />
-      </LogProvider>
-    </CurrentSessionProvider>
-  </UserProvider>
+  <MessageProvider>
+    <UserProvider>
+      <CurrentSessionProvider>
+        <LogProvider>
+          <RouterProvider router={router} />
+        </LogProvider>
+      </CurrentSessionProvider>
+    </UserProvider>
+  </MessageProvider>
 );

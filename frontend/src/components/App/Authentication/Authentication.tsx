@@ -6,12 +6,9 @@ import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
 import './style.scss';
-import Snackbar from '../../Commons/Snackbar/Snackbar';
-import { useLogContext } from '../../../contexts/LogContext';
 
 function Authentication() {
   const [isLogin, setIsLogin] = useState(true);
-  const { message } = useLogContext();
 
   return (
     <>
@@ -29,10 +26,6 @@ function Authentication() {
         </div>
         <p className="credits">Created & developed by @chloebatillet</p>
       </div>
-
-      <Snackbar
-        message={message}
-      />
     </>
   );
 }

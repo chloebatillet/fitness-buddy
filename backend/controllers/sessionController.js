@@ -55,6 +55,7 @@ const sessionController = {
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
+      return;
     }
   },
 
@@ -80,6 +81,10 @@ const sessionController = {
       const { exercise_id, nb_reps, weight_lifted } = req.body;
       const { id } = req.params;
 
+      if (!exercise_id || nb_reps.length() === 0 || weight_lifted.length() === 0) {
+        return res.status(400).json({error: "Can't add empty exercise."})
+      }
+      
       const newExercise = await SessionExercise.addExercise(id, exercise_id);
 
       nb_reps.map(async (e, index) => {
@@ -97,49 +102,6 @@ const sessionController = {
     }
   },
 
-  // addSetToExercise: async (req, res) => {
-  //   try {
-  //     const { nb_reps, weight_lifted } = req.body;
-  //     const { session_exercise_id } = req.params;
-  //     console.log("--------------------->");
-  //     //console.log(nb_reps);
-
-  //     nb_reps.map(async (e, index) => {
-  //       console.log(e, weight_lifted[index]);
-  //       await Set.addSet(session_exercise_id, e, weight_lifted[index]);
-  //     });
-
-  //     //await Set.addSet(session_exercise_id, nb_reps, weight_lifted);
-
-  //     res.status(201).json({ message: "Set added!" });
-  //   } catch (error) {
-  //     console.log(error);
-  //     res.status(500).json(error);
-  //   }
-  // },
-
-  // quand on clique sur la ptite flèche pour dérouler
-  getOneExerciceFromSession: async (req, res) => {
-    try {
-      const exerciseSets = await SessionExercise.findByPk(req.params.id, {
-        include: [
-          {
-            association: "exercise_name",
-            attributes: ["name"],
-          },
-          {
-            association: "sets",
-          },
-        ],
-        order: [["sets", "created_at", "ASC"]],
-      });
-
-      res.json(exerciseSets);
-    } catch (error) {
-      console.log(error);
-      res.status(500).json(error);
-    }
-  },
 };
 
 module.exports = sessionController;
