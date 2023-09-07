@@ -41,7 +41,10 @@ router.post("/exercise-list", exerciseController.add);
 router.patch("/exercise-list/:id", exerciseController.update);
 router.delete("/exercise-list/:id", exerciseController.delete);
 
-// TODO: AJOUTER LES EXOS FAVORIS
+/**
+ * Exercise favourites
+ * - basic CRUD
+ */
 router.get("/exercises/favourites", favouriteController.getAll);
 router.post("/exercise/:id/favourites", favouriteController.add);
 router.delete("/exercise/:id/favourites", favouriteController.delete);

@@ -12,6 +12,13 @@ export function UserProvider({ children }) {
   const [user, setUser] = useState({});
   const [favouriteExercises, setFavouritesExercises] = useState([]);
 
+  /**
+   * TS : item: 'id' | 'firstname' | 'lastname' | 'email'
+   */
+  const getUserInfo = (item) => {
+    return JSON.parse(user).user[item];
+  };
+
   const isFavouriteExercise = (id) => {
     return favouriteExercises.some((e) => e.id == id);
   };
@@ -20,8 +27,6 @@ export function UserProvider({ children }) {
     try {
       const { data } = await axiosInstance.get('/exercises/favourites');
       setFavouritesExercises(data);
-      console.log(data);
-      // isFavouriteExercise();
     } catch (error) {
       console.log(error);
     }
@@ -48,6 +53,7 @@ export function UserProvider({ children }) {
   const userContextValue = {
     user,
     setUser,
+    getUserInfo,
     getFavourites,
     isFavouriteExercise,
     favouriteExercises,

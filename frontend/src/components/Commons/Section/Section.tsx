@@ -5,17 +5,22 @@ import './style.scss';
 
 interface SectionProps {
   titleDetails: TitleProps;
-  content: ReactElement;
+  content?: ReactElement;
+  borderBottom?: 'none';
 }
 
-function Section({ titleDetails, content }: SectionProps) {
+function Section({ titleDetails, content, borderBottom }: SectionProps) {
   return (
-    <section className='section-container'>
+    <section
+      className="section-container"
+      style={borderBottom && { borderBottom: `${borderBottom}`, paddingBottom: '0px'}}
+    >
       <Title
         level={titleDetails.level}
         text={titleDetails.text}
         icon={titleDetails.icon}
         color={titleDetails.color}
+        fontWeight={titleDetails.fontWeight}
         link={titleDetails.link}
         textLink={titleDetails.textLink}
       />

@@ -2,10 +2,22 @@ import Section from '../../../../Commons/Section/Section';
 import Insights from './Insights/Insights';
 import ExerciseList from './ExerciseList/ExerciseList';
 import LastSessions from './LastSession/LastSessions';
+import { useUserContext } from '../../../../../contexts/UserContext';
 
 function Homepage() {
+  const { getUserInfo } = useUserContext();
+
   return (
     <div className="container">
+      <Section
+        titleDetails={{
+          level: '2',
+          text: `welcome back ${getUserInfo('firstname')}`,
+          fontWeight: 'bold',
+          //icon: 'ph:barbell',
+        }}
+        borderBottom="none"
+      />
       <Section
         titleDetails={{
           level: '2',

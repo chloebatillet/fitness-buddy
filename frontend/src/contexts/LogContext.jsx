@@ -62,12 +62,15 @@ export function LogProvider({ children }) {
       });
   };
 
-  const stayLogged = () => {
+  const stayLogged = async () => {
     if (localStorage.getItem('isLogged')?.valueOf() === 'true') {
       axiosInstance.defaults.headers.common[
         'Authorization'
       ] = `Bearer ${localStorage.getItem('token')}`;
       setIsLogged(true);
+
+      //console.log('coucou');
+      setUser(localStorage.getItem('user'));
     }
   };
 
