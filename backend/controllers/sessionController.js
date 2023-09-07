@@ -82,7 +82,7 @@ const sessionController = {
       const { exercise_id, nb_reps, weight_lifted } = req.body;
       const { id } = req.params;
 
-      if (!exercise_id || nb_reps.length() === 0 || weight_lifted.length() === 0) {
+      if (!exercise_id || nb_reps.length === 0 || weight_lifted.length === 0) {
         return res.status(400).json({error: "Can't add empty exercise."})
       }
       

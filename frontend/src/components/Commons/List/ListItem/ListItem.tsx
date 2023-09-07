@@ -12,16 +12,13 @@ export interface ListItemProps {
 }
 
 function ListItem({ id, name, icon }: ListItemProps) {
-  const {
-    addToFavourites,
-    removeFromFavourites,
-    isFavouriteExercise,
-  } = useUserContext();
-  
+  const { addToFavourites, removeFromFavourites, isFavouriteExercise } =
+    useUserContext();
+
   const [isClicked, setIsClicked] = useState(isFavouriteExercise(id));
-  
+
   useEffect(() => {
-    isFavouriteExercise(id)
+    isFavouriteExercise(id);
   }, []);
 
   const handleClick = async () => {
