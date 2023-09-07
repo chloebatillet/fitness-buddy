@@ -48,12 +48,16 @@ SessionExercise.belongsTo(Exercise, {
 
 User.belongsToMany(Exercise, {
   foreignKey: "user_id",
-  through: "favourites",
+  otherKey: "exercise_id",
+  through: "favourite",
+  as: "FavouriteExercises",
 });
 
 Exercise.belongsToMany(User, {
   foreignKey: "exercise_id",
-  through: "favourites",
+  otherKey: "user_id",
+  through: "favourite",
+  as: "FavouritedByUser",
 });
 
 module.exports = {

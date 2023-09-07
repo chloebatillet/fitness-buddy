@@ -67,6 +67,7 @@ const sessionController = {
         where: {
           user_id: id,
         },
+        order: [["created_at", "DESC"]]
       });
 
       res.json(sessionList);

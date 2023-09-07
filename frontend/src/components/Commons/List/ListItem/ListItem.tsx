@@ -1,5 +1,6 @@
 import { Icon } from '@iconify/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useUserContext } from '../../../../contexts/UserContext';
 
 export interface ListItemProps {
   id: number;
@@ -10,11 +11,21 @@ export interface ListItemProps {
   icon?: string;
 }
 
-function ListItem({ name, icon }: ListItemProps) {
-  const [isClicked, setIsClicked] = useState(false);
+function ListItem({ id, name, icon }: ListItemProps) {
+  const {
+    addToFavourites,
+    removeFromFavourites,
+    isFavouriteExercise,
+  } = useUserContext();
+  
+  const [isClicked, setIsClicked] = useState(isFavouriteExercise(id));
+  
+  useEffect(() => {
+    isFavouriteExercise(id)
+  }, []);
 
-  const handleClick = () => {
-    // appel axios
+  const handleClick = async () => {
+    isClicked ? removeFromFavourites(id) : addToFavourites(id);
     setIsClicked(!isClicked);
   };
   return (

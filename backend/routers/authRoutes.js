@@ -5,6 +5,7 @@ const userController = require("../controllers/userController");
 const exerciseController = require("../controllers/exerciseController");
 const categoryController = require("../controllers/categoryController");
 const sessionController = require("../controllers/sessionController");
+const favouriteController = require("../controllers/favouriteController");
 
 /**
  * Account settings
@@ -41,9 +42,9 @@ router.patch("/exercise-list/:id", exerciseController.update);
 router.delete("/exercise-list/:id", exerciseController.delete);
 
 // TODO: AJOUTER LES EXOS FAVORIS
-router.get("/exercises/favourites");
-router.post("/exercises/:id/favourites");
-router.delete("/exercises/:id/favourites");
+router.get("/exercises/favourites", favouriteController.getAll);
+router.post("/exercise/:id/favourites", favouriteController.add);
+router.delete("/exercise/:id/favourites", favouriteController.delete);
 
 // Liste des categories, liée aux exercises.
 // Seulement la get sera utilisée par l'utilisateur pour créer la liste déroulante lors de la création d'un nouvel exo

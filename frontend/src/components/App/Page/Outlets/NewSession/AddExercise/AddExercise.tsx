@@ -43,7 +43,7 @@ function AddExercise({ setIsOpen }: AddExerciseProps) {
     setAllSet([...allSet, <SetInput key={allSet.length} />]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
 
     const formData = new FormData(formRef.current);

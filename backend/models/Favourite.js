@@ -3,7 +3,7 @@ const sequelize = require("./connection");
 const Exercise = require("./Exercise");
 const User = require("./User");
 
-class Favourites extends Model {
+class Favourite extends Model {
   // static async add(sessionId, exerciseId) {
   //   const sessionExercise = await this.create({
   //     session_id: parseInt(sessionId),
@@ -13,7 +13,7 @@ class Favourites extends Model {
   // }
 }
 
-Favourites.init(
+Favourite.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -42,8 +42,8 @@ Favourites.init(
   },
   {
     sequelize,
-    tableName: "favourites",
+    tableName: "favourite",
   }
 );
 
-module.exports = Favourites;
+module.exports = Favourite;

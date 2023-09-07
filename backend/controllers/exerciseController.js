@@ -4,7 +4,10 @@ const exerciseController = {
   getAll: async (req, res) => {
     try {
       const exerciseList = await Bodypart.findAll({
-        include: { association: "exercises", attributes: ["id", "name"] },
+        include: {
+          association: "exercises",
+          attributes: ["id", "name"],
+        },
         order: [
           ["name", "ASC"],
           ["exercises", "name", "ASC"],

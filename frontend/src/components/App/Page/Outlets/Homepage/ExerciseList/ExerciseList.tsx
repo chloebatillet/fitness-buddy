@@ -1,3 +1,4 @@
+import { useUserContext } from '../../../../../../contexts/UserContext';
 import axiosInstance from '../../../../../../utils/axios';
 import List from '../../../../../Commons/List/List';
 
@@ -5,9 +6,11 @@ import { useEffect, useState } from 'react';
 
 function ExerciseList() {
   const [exerciseList, setExerciseList] = useState([]);
+  const { getFavourites } = useUserContext();
 
   const fetchExerciseList = async () => {
-
+    getFavourites();
+    
     await axiosInstance
       .get('/exercise-list')
       .then(function (response) {
@@ -22,15 +25,11 @@ function ExerciseList() {
     fetchExerciseList();
   }, [setExerciseList]);
 
-  const list = exerciseList.map((e: any) => {    
+  const list = exerciseList.map((e: any) => {
     return <List key={e.name} name={e.name} items={e.exercises} />;
   });
 
-  return (
-    <ul>
-      {list}
-    </ul>
-  );
+  return <ul>{list}</ul>;
 }
 
 export default ExerciseList;

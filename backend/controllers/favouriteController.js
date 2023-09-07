@@ -1,18 +1,16 @@
-const { Bodypart, Exercise } = require("../models/index");
+const { Exercise, User, Favourite } = require("../models/index");
 
 const favouriteController = {
   getAll: async (req, res) => {
     try {
-      const exerciseList = await Bodypart.findAll({
-        include: { association: "exercises", attributes: ["id", "name"] },
-        order: [
-          ["name", "ASC"],
-          ["exercises", "name", "ASC"],
-        ],
+      const user = await User.findByPk(req.user.id);
+
+      const favourites = await user.getFavouriteExercises({
         attributes: ["id", "name"],
+        joinTableAttributes: [],
       });
 
-      res.json(exerciseList);
+      res.json(favourites);
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
@@ -21,23 +19,10 @@ const favouriteController = {
 
   add: async (req, res) => {
     try {
-      const { name, bodypart_id } = req.body;
+      const user = await User.findByPk(req.user.id);
+      await user.addFavouriteExercises(req.params.id);
 
-      const alreadyExists = await Exercise.findOne({
-        where: { name: name.toLowerCase() },
-      });
-
-      if (alreadyExists) {
-        res.status(400).json({ error: "This exercise already exists" });
-        return;
-      }
-
-      await Exercise.create({
-        name: name.toLowerCase(),
-        bodypart_id: parseInt(bodypart_id),
-      });
-
-      res.status(201).json({ message: "Exercise added!" });
+      res.status(201).json({ message: "Exercise added to favourites!" });
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
@@ -46,17 +31,18 @@ const favouriteController = {
 
   delete: async (req, res) => {
     try {
-      const exerciseToDelete = await Exercise.findByPk(req.params.id);
-
-      console.log(exerciseToDelete);
-      if (!exerciseToDelete) {
+      const favouriteToDelete = await Favourite.findOne({
+        where: { exercise_id: req.params.id, user_id: req.user.id},
+      });
+      
+      if (!favouriteToDelete) {
         res.status(404).json({ error: "Exercise not found." });
         return;
       }
 
-      await exerciseToDelete.destroy();
+      await favouriteToDelete.destroy();
 
-      res.status(202).json({ message: "Exercise deleted!" });
+      res.status(202).json({ message: "Exercise deleted from favourites!" });
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
