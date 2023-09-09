@@ -5,6 +5,18 @@ class User extends Model {
   getFullname() {
     return [this.firstname, this.lastname].join(" ");
   }
+
+  async editInfo(dataToTransform) {
+    let data = {};
+
+    for (const key in dataToTransform) {
+      if (dataToTransform[key].trim().length !== 0) {
+        data[key] = dataToTransform[key];
+      }
+    }
+
+    await this.update(data);
+  }
 }
 
 User.init(

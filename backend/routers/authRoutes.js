@@ -10,7 +10,9 @@ const favouriteController = require("../controllers/favouriteController");
 /**
  * Account settings
  */
-router.delete("/delete-account", userController.delete);
+router.patch("/account/edit", userController.edit);
+router.patch("/account/change-password", userController.changePwd);
+router.delete("/account/delete", userController.delete);
 
 /**
  * Start a session

@@ -40,15 +40,16 @@ function Footer() {
           </button>
         </div>
       </div>
+
       {isOpen && (
         <Modal
           isOpen={isOpen}
           setIsOpen={setIsOpen}
           handleConfirm={handleConfirm}
           message={'Are you sure you want to finish this session?'}
+          defaultBtn={true}
         />
       )}
-      {/* {IsStarted && <Redirect to="/nouvelle-page" />} */}
     </>
   );
 }

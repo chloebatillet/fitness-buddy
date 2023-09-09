@@ -4,7 +4,7 @@ function Insights() {
   const insights = [
     { value: 3, unit: 'd', legend: 'rest' },
     { value: 365, unit: 'kg', legend: 'average lift' },
-    { value: 46.7, unit: 'kg', legend: 'eight' },
+    { value: 46.7, unit: 'kg', legend: 'weight' },
   ];
 
   const items = insights.map((e) => {

@@ -1,29 +1,19 @@
+import { useExerciseContext } from '../../../../../../contexts/ExerciseContext';
 import { useUserContext } from '../../../../../../contexts/UserContext';
-import axiosInstance from '../../../../../../utils/axios';
 import List from '../../../../../Commons/List/List';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+
+// interface ExerciseListProps {
+//   mode: 'normal' | 'delete' | 'update';
+// }
 
 function ExerciseList() {
-  const [exerciseList, setExerciseList] = useState([]);
-  const { getFavourites } = useUserContext();
-
-  const fetchExerciseList = async () => {
-    getFavourites();
-    
-    await axiosInstance
-      .get('/exercise-list')
-      .then(function (response) {
-        setExerciseList(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-  };
+  const { exerciseList, getExerciseList } = useExerciseContext();
 
   useEffect(() => {
-    fetchExerciseList();
-  }, [setExerciseList]);
+    getExerciseList();
+  }, []);
 
   const list = exerciseList.map((e: any) => {
     return <List key={e.name} name={e.name} items={e.exercises} />;

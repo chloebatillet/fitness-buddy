@@ -17,4 +17,8 @@
     &.is-no {
       background-color: #EE5D5D;
     }
+
+    &:focus {
+      //color: #84DCC6;
+    }
 }

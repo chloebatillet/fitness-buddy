@@ -38,12 +38,11 @@ function AddExercise({ setIsOpen }: AddExerciseProps) {
     displayExercises();
   }, []);
 
-
   const handleAddSet = () => {
     setAllSet([...allSet, <SetInput key={allSet.length} />]);
   };
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
 
     const formData = new FormData(formRef.current);
@@ -65,7 +64,7 @@ function AddExercise({ setIsOpen }: AddExerciseProps) {
           selectId={'exercise_id'}
           icon="ph:barbell"
           required={true}
-        />
+          autoFocus={true} placeholder={'-- select exercise --'}        />
 
         <section className="exercise-box-content">
           <ul className="set-list">

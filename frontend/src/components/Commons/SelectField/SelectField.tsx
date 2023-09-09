@@ -11,19 +11,31 @@ interface SelectFieldProps {
   list: ListElements[];
   selectName: string;
   selectId: string;
-  icon: string;
+  placeholder: string;
+  icon?: string;
   required?: boolean;
+  autoFocus?: boolean;
 }
 
 function SelectField({
   list,
   selectName,
   selectId,
+  placeholder,
   icon,
   required,
+  autoFocus,
 }: SelectFieldProps) {
+
+  
+  // LISTE DES PROPS
   const selectList = list.map((e) => {
-    return e.exercises?.length !== 0 ? (
+
+    return !e.exercises?.length ? (
+      <option key={e.name} value={e.id}>
+        {e.name}
+      </option>
+    ) : (
       <optgroup key={e.name} label={e.name}>
         {e.exercises?.map((el) => (
           <option key={el.name} value={el.id} className="select-field-option">
@@ -31,10 +43,6 @@ function SelectField({
           </option>
         ))}
       </optgroup>
-    ) : (
-      <option key={e.name} value={e.id}>
-        {e.name}
-      </option>
     );
   });
 
@@ -45,11 +53,15 @@ function SelectField({
         name={selectName}
         id={selectId}
         required={required}
+        autoFocus={autoFocus}
       >
-        <option value={''} hidden>-- Choose an exercise --</option>
+        <option value={''} hidden>
+          {/* -- Choose an exercise -- */}
+          {placeholder}
+        </option>
         {selectList}
       </select>
-      <Icon icon={icon} className="select-field-icon" />
+      {icon && <Icon icon={icon} className="select-field-icon" />}
     </div>
   );
 }

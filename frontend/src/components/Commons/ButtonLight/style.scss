@@ -1,0 +1,34 @@
+:root {
+  --font-size: 1rem;
+}
+
+.button-light {
+  all: unset;
+  cursor: pointer;
+  font-size: var(--font-size);
+  text-transform: lowercase;
+  background-color: rgb(#222, 0.05);
+  color: rgb(#222, 0.2);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+
+  &:hover {
+    background-color: rgb(#222, 0.10);
+  }
+
+  &:active {
+    background-color: rgb(#222, 0.2);
+  }
+
+  .button-icon {
+      font-size: var(--font-size);
+      margin-bottom: calc(var(--font-size) * -0.1);
+      margin-right: calc(var(--font-size) / 5);
+    }
+}

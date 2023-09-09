@@ -36,7 +36,7 @@ const userController = {
         expiresIn: process.env.EXPIREDATETOKEN,
       });
 
-      res.send({ message: "Logged in", user, token: token });
+      res.json({ message: "Logged in", user, token: token });
     } catch (error) {
       console.log(error);
       res.status(500).json(error);
@@ -69,8 +69,7 @@ const userController = {
       const saltRounds = parseInt(process.env.SALT_ROUNDS);
       const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-      const user = await User.create({ ...req.body, password: hashedPassword });
-      console.log(user.getFullname());
+      await User.create({ ...req.body, password: hashedPassword });
 
       res.json({ message: "Account created! Please log in now." });
     } catch (error) {
@@ -79,15 +78,64 @@ const userController = {
     }
   },
 
-  delete: async (req, res) => {
+  edit: async (req, res) => {
     try {
-      const { id } = req.user;
+      const user = await User.findByPk(req.user.id);
+      await user.editInfo(req.body);
 
-      // gestion d'erreur
-      const user = await User.findByPk(id);
+      res.json({ user, message: "Your profile is up-to-date!" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json(error);
+    }
+  },
+
+  changePwd: async (req, res) => {
+    try {
+      const user = await User.findByPk(req.user.id);
 
       if (!user) {
         res.status(404).json({ error: "Account not found" });
+        return;
+      }
+
+      const isMatching = await bcrypt.compare(
+        req.body.current_password,
+        user.password
+      );
+
+      if (!isMatching) {
+        res.status(400).json({ error: "Invalid password." });
+        return;
+      }
+
+      const hashedPassword = await bcrypt.hash(
+        req.body.new_password,
+        parseInt(process.env.SALT_ROUNDS)
+      );
+
+      await user.update({ password: hashedPassword });
+
+      res.status(200).json({ message: "Your password is changed!" });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  },
+
+  delete: async (req, res) => {
+    try {
+      console.log('body', req.body);
+      const user = await User.findByPk(req.user.id);
+
+      if (!user) {
+        res.status(404).json({ error: "Account not found" });
+        return;
+      }
+
+      const isMatching = await bcrypt.compare(req.body.password, user.password);
+      if (!isMatching) {
+        res.status(400).json({ error: "Invalid password." });
         return;
       }
 
@@ -95,7 +143,7 @@ const userController = {
 
       res.status(202).json({ message: "Account deleted" });
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.status(500).json(error);
     }
   },

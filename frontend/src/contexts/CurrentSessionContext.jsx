@@ -38,6 +38,8 @@ export function CurrentSessionProvider({ children }) {
 
   const endSession = () => {
     setIsStarted(false);
+    setAllExercises([]);
+    setSessionId(0); // juste pour être sûre mais pas très utile
     localStorage.setItem('sessionIsStarted', false);
     localStorage.removeItem('sessionId');
   };
@@ -47,7 +49,6 @@ export function CurrentSessionProvider({ children }) {
       const id = localStorage.getItem('sessionId');
       console.log(id);
       const { data } = await axiosInstance.get(`/session/${id}`);
-      // console.log(data);
       setAllExercises(data.Exercises);
     } catch (error) {
       console.log(error);

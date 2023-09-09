@@ -2,12 +2,14 @@ import { Icon } from '@iconify/react';
 import Button from '../Button/Button';
 
 import './style.scss';
+import { ReactElement } from 'react';
 
 interface ModalProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handleConfirm: () => void;
-  message: string;
+  message: string | ReactElement;
+  defaultBtn: boolean;
   acceptMessage?: string;
   refuseMessage?: string;
 }
@@ -17,6 +19,7 @@ function Modal({
   setIsOpen,
   handleConfirm,
   message,
+  defaultBtn,
   acceptMessage,
   refuseMessage,
 }: ModalProps) {
@@ -25,7 +28,7 @@ function Modal({
   };
 
   return (
-    <div className='modal-container'>
+    <div className="modal-container">
       <div
         className={`overlay ${isOpen ? 'open' : ''}`}
         onClick={closeModal}
@@ -43,18 +46,22 @@ function Modal({
           </div>
 
           <div className="btn-group">
-            <Button
-              type="button"
-              value={acceptMessage || 'YES'}
-              style={{ backgroundColor: 'black' }}
-              onClick={() => handleConfirm()}
-            />
-            <Button
-              type="button"
-              value={refuseMessage || 'NO'}
-              isNo={true}
-              onClick={closeModal}
-            />
+            {defaultBtn && (
+              <Button
+                type="button"
+                value={acceptMessage || 'YES'}
+                style={{ backgroundColor: '#222' }}
+                onClick={() => handleConfirm()}
+              />
+            )}
+            {defaultBtn && (
+              <Button
+                type="button"
+                value={refuseMessage || 'NO'}
+                isNo={true}
+                onClick={closeModal}
+              />
+            )}
           </div>
         </div>
       </div>

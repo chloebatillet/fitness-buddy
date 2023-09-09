@@ -14,7 +14,6 @@ function Homepage() {
           level: '2',
           text: `welcome back ${getUserInfo('firstname')}`,
           fontWeight: 'bold',
-          //icon: 'ph:barbell',
         }}
         borderBottom="none"
       />
@@ -41,7 +40,7 @@ function Homepage() {
           level: '2',
           text: 'exercice list',
           icon: 'solar:list-bold',
-          link: '/settings/exercise-list',
+          link: '/settings#exercise-list',
           textLink: 'Manage',
         }}
         content={<ExerciseList />}

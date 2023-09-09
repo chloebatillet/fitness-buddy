@@ -25,7 +25,6 @@ function LoginForm({ isLogin, setIsLogin }: LoginFormProps) {
 
   return (
     <div className="form">
-      <h3 className="form-title">login</h3>
       <form onSubmit={handleSubmit}>
         <FormField
           type="email"

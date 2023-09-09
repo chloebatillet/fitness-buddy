@@ -21,6 +21,7 @@ interface FormFieldProps {
   required?: boolean;
   disabled?: boolean;
   autoFocus?: boolean;
+  autoComplete?: 'off';
   style?: StyleProps;
 }
 
@@ -33,6 +34,7 @@ const FormField = ({
   required,
   disabled,
   autoFocus,
+  autoComplete,
   style,
 }: FormFieldProps) => {
   const [inputValue, setInputValue] = useState('');
@@ -45,12 +47,13 @@ const FormField = ({
         //id={name}
         required={required}
         autoFocus={autoFocus}
+        autoComplete={autoComplete}
         style={style?.input}
         value={inputValue || value}
         disabled={disabled}
         onChange={(e) => setInputValue(e.currentTarget.value)}
       ></input>
-      <Icon icon={icon} className="input-icon" />
+      {icon && <Icon icon={icon} className="input-icon" />}
 
       <span className="highlight"></span>
       <span className="bar"></span>

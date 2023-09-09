@@ -17,7 +17,7 @@ function List({ name, items, icon }: ListProps) {
       </div>
 
       {items.map((e) => {
-        return <ListItem key={e.name} id={e.id} name={e.name} icon="ph:star" />;
+        return <ListItem key={e.name} id={e.id} name={e.name} icon={{clicked: "ph:star-fill", unclicked: "ph:star-light"}} />;
       })}
     </ul>
   );

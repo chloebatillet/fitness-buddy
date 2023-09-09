@@ -15,7 +15,7 @@ export function LogProvider({ children }) {
   const [isLogged, setIsLogged] = useState(false);
 
   const { sendMessage } = useMessageContext();
-  const { user, setUser } = useUserContext();
+  const { user, setUser, getUserInfo } = useUserContext();
   const { endSession } = useCurrentSessionContext();
 
   const signup = async (objData) => {
@@ -49,7 +49,9 @@ export function LogProvider({ children }) {
           if (localStorage.getItem('token') === response.data.token) {
             const user = response.data.user;
             localStorage.setItem('user', JSON.stringify({ user }));
-            setUser(user);
+            
+            //* from localStorage sinon pb de format pour JSON.parse()
+            setUser(localStorage.getItem('user'));
 
             setIsLogged(true);
             localStorage.setItem('isLogged', 'true');

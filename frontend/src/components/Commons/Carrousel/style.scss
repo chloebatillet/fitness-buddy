@@ -27,6 +27,7 @@
     overflow-y: hidden;
     scroll-behavior: smooth;
     overscroll-behavior-x: contain;
+    width: 100%;
     //position: relative;
 
     &::-webkit-scrollbar {
@@ -38,7 +39,7 @@
     display: flex;
     align-items: center;
     height: calc(5rem * 1.1);
-    //justify-content: start;
+    justify-content: start;
     gap: 0.5rem;
     position: relative;
     transition: all 0.3s ease-in-out;
@@ -46,6 +47,7 @@
     > a {
       scroll-snap-align: start;
       z-index: 20000;
+      transition: all 0.3s ease-in;
 
       > button {
         width: 5rem;

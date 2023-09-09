@@ -16,7 +16,6 @@ export function MessageProvider({ children }) {
     setDisplayMessage(true);
 
     setTimeout(() => {
-      console.log('fini');
       setDisplayMessage(false);
       setMessage('');
     }, 5000);

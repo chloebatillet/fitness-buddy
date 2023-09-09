@@ -28,11 +28,13 @@ function Header() {
     <>
       <header className="header">
         <div className="header-container">
+          {/* LOGO */}
           <div className="logo-container">
             <Link to={'/'}>
               <img className="logo" src={logo} alt="Logo Fitness Buddy" />
             </Link>
           </div>
+          {/* BURGER */}
           <div className="menu-header" onClick={() => setIsOpen(!isOpen)}>
             <Icon
               icon={'solar:hamburger-menu-linear'}
@@ -41,10 +43,12 @@ function Header() {
             />
           </div>
         </div>
+
+        {/* DROPDOWN MENU */}
         {isOpen && (
           <div className="menu-dropdown">
             <ul>
-              <Link to={'#'}>
+              <Link to={'/settings'}>
                 <li className="menu-item">
                   <Icon icon={'solar:settings-linear'} className="item-icon" />
                   Settings
@@ -60,8 +64,10 @@ function Header() {
           </div>
         )}
       </header>
+
+      {/* OVERLAY */}
       <div
-        className={`overlay ${isOpen ? 'open' : ''}`}
+        className={`overlay-header ${isOpen ? 'open' : ''}`}
         onClick={() => setIsOpen(false)}
       ></div>
     </>

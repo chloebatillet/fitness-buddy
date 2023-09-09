@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react';
 
 import './style.scss';
 import { useState } from 'react';
+import { formatDate } from '../../../utils/formatDate';
 
 interface Session {
   id: number;
@@ -70,7 +71,7 @@ function Carrousel({ list, emptyMessage }: CarrouselProps) {
                 >
                   <Button
                     type={'button'}
-                    value={e.created_at}
+                    value={formatDate(e.created_at)}
                     onClick={undefined}
                   ></Button>
                 </Link>
