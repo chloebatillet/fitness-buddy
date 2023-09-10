@@ -4,7 +4,7 @@ const port = 3000;
 const cors = require("cors");
 
 const router = require("./routers/router");
-const sequelizeConnection = require("./models/connection");
+//const sequelizeConnection = require("./models/connection");
 
 app.use(
   cors({

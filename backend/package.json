@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "deploy": "npm run build && node index.js"
+    "deploy": "npm run build && node index.js",
+    "db-seeding": "npx sequelize-cli db:seed:all",
+    "db-reset": "node resetDB.js && npm run db-seeding"
   },
   "repository": {
     "type": "git",

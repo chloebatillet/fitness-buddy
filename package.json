@@ -4,6 +4,7 @@
   "description": "A simple fitness tracking app",
   "main": "index.js",
   "scripts": {
+    "db-reset" : "cd backend && npm run db-reset",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\"",
     "start-backend": "cd backend && npm start",

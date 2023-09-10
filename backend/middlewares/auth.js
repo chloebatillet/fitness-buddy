@@ -1,6 +1,7 @@
 // middleware à passer sur toutes les routes où il faut être authentifié
 const jwt = require("jsonwebtoken");
-const { User } = require("../models");
+// const { User } = require("../models");
+const { User } = require("../models/all");
 
 const authMiddleware = async (req, res, next) => {
   const token = req.headers.authorization;
