@@ -1,4 +1,4 @@
-const { Session, Exercise, SessionExercise, Set } = require("../models/index");
+const { Session, Exercise, SessionExercise, Set } = require("../models/all");
 
 const sessionController = {
   create: async (req, res) => {

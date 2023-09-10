@@ -1,4 +1,4 @@
-const { Bodypart } = require("../models/index");
+const { Bodypart } = require("../models/all");
 
 const categoryController = {
   getAll: async (req, res) => {

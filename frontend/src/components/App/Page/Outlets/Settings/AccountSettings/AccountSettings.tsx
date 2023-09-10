@@ -1,4 +1,3 @@
-import ButtonLight from '../../../../../Commons/ButtonLight/ButtonLight';
 import EditInfo from './EditInfo';
 import ChangePwd from './ChangePwd';
 import Summary from '../../../../../Commons/Summary/Summary';

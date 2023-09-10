@@ -1,4 +1,4 @@
-const { Bodypart, Exercise } = require("../models/index");
+const { Bodypart, Exercise } = require("../models/all");
 
 const exerciseController = {
   getAll: async (req, res) => {

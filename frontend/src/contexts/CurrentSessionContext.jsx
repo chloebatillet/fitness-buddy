@@ -47,7 +47,6 @@ export function CurrentSessionProvider({ children }) {
   const displayExercises = async () => {
     try {
       const id = localStorage.getItem('sessionId');
-      console.log(id);
       const { data } = await axiosInstance.get(`/session/${id}`);
       setAllExercises(data.Exercises);
     } catch (error) {
@@ -63,8 +62,6 @@ export function CurrentSessionProvider({ children }) {
         nb_reps: [],
         weight_lifted: [],
       };
-
-      console.log('OBJDATA ------------------', objData);
 
       for (const key in objData) {
         if (key.includes('nb_reps') && objData[key].trim().length !== 0) {

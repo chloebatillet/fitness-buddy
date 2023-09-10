@@ -10,7 +10,7 @@ function DeleteAccount() {
     generateCode();
   }, [code]);
 
-  console.log(code);
+  //console.log(code);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

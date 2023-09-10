@@ -1,4 +1,4 @@
-const { Exercise, User, Favourite } = require("../models/index");
+const { Exercise, User, Favourite } = require("../models/all");
 
 const favouriteController = {
   getAll: async (req, res) => {
