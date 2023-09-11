@@ -14,8 +14,8 @@ export function useLogContext() {
 export function LogProvider({ children }) {
   const [isLogged, setIsLogged] = useState(false);
 
-  const { sendMessage } = useMessageContext();
-  const { user, setUser, getUserInfo } = useUserContext();
+  const { sendMessage, putLoader, removeLoader } = useMessageContext();
+  const { setUser } = useUserContext();
   const { endSession } = useCurrentSessionContext();
 
   const signup = async (objData) => {
@@ -34,6 +34,7 @@ export function LogProvider({ children }) {
 
   const login = async (objData) => {
     //? return ?
+    putLoader('Logging in');
     await axiosInstance
       .post('/login', objData)
       .then((response) => {
@@ -46,17 +47,19 @@ export function LogProvider({ children }) {
 
         setTimeout(() => {
           // vérif si le token dans le storage est celui donné par le back
+
           if (localStorage.getItem('token') === response.data.token) {
             const user = response.data.user;
             localStorage.setItem('user', JSON.stringify({ user }));
-            
+
             //* from localStorage sinon pb de format pour JSON.parse()
             setUser(localStorage.getItem('user'));
 
             setIsLogged(true);
             localStorage.setItem('isLogged', 'true');
           }
-        }, 2000);
+          removeLoader();
+        }, 1000);
       })
       .catch((error) => {
         console.error(error);
@@ -77,11 +80,17 @@ export function LogProvider({ children }) {
   };
 
   const logout = () => {
-    setIsLogged(false);
-    endSession();
-    localStorage.setItem('isLogged', 'false');
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    putLoader('logging out');
+
+    setTimeout(() => {
+      setIsLogged(false);
+      endSession();
+      localStorage.setItem('isLogged', 'false');
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+
+      removeLoader();
+    }, 2000);
   };
 
   const logContextValue = {

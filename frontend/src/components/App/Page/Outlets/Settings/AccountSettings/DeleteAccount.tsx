@@ -4,11 +4,11 @@ import Button from '../../../../../Commons/Button/Button';
 import FormField from '../../../../../Commons/FormField/FormField';
 
 function DeleteAccount() {
-  const { code, generateCode, deleteAccount } = useUserContext();
+  const { code, generateCode, getACode, deleteAccount } = useUserContext();
 
-  useEffect(() => {
-    generateCode();
-  }, [code]);
+  // useEffect(() => {
+  //   generateCode();
+  // }, []);
 
   //console.log(code);
 
@@ -35,7 +35,7 @@ function DeleteAccount() {
 
         <p>Write the code below:</p>
 
-        <p>{code}</p>
+        <p>{generateCode()}</p>
 
         <FormField type={'text'} name={'code'} placeholder={'code'} required />
 

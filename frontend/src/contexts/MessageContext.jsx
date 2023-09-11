@@ -10,6 +10,8 @@ export function useMessageContext() {
 export function MessageProvider({ children }) {
   const [message, setMessage] = useState('');
   const [displayMessage, setDisplayMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState('');
 
   const sendMessage = (message) => {
     setMessage(message);
@@ -21,9 +23,23 @@ export function MessageProvider({ children }) {
     }, 5000);
   };
 
+  const putLoader = (message) => {
+    setIsLoading(true);
+    setLoadingMessage(message);
+  };
+
+  const removeLoader = () => {
+    setIsLoading(false);
+    setLoadingMessage('');
+  };
+
   const messageContextValue = {
     message,
-    sendMessage
+    sendMessage,
+    isLoading,
+    putLoader,
+    removeLoader,
+    loadingMessage,
   };
 
   return (

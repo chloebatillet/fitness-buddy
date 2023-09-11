@@ -19,10 +19,10 @@ function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(window.location.href === 'http://localhost:5173/settings');
-
     if (window.location.href === 'http://localhost:5173/new-session') {
       setIsNewSessionUrl(true);
+    } else {
+      setIsNewSessionUrl(false);
     }
   }, [window.location.href]);
 
@@ -33,15 +33,7 @@ function Header() {
   };
 
   const handleLogout = () => {
-    setTimeout(() => {
-      logout();
-      // ajouter une page de chargement
-      navigate('/logout');
-    }, 1000);
-
-    setTimeout(() => {
-      navigate('/');
-    }, 3000);
+    logout();
   };
 
   return (

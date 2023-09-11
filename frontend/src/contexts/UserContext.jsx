@@ -30,16 +30,17 @@ export function UserProvider({ children }) {
       c.push(Math.floor(Math.random() * 10));
     }
     //console.log(c.join(''));
-    setCode(c.join(''));
+    //setCode(c.join(''));
+    return c.join('');
   };
 
-  // const getACode = () => {
-  //   const code = setInterval(() => {
-  //     console.log('coucou');
-  //     generateCode();
-  //   }, 1000);
-  //   clearInterval(code);
-  // };
+  const getACode = () => {
+    const code = setInterval(() => {
+      console.log('coucou');
+      generateCode();
+    }, 60000);
+    clearInterval(code);
+  };
 
   const editInfo = async (objData) => {
     try {
@@ -124,7 +125,7 @@ export function UserProvider({ children }) {
     changePwd,
     deleteAccount,
     generateCode,
-    //getACode,
+    getACode,
     getFavourites,
     isFavouriteExercise,
     favouriteExercises,
