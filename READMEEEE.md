@@ -8,7 +8,7 @@ Figma: https://www.figma.com/file/6ZpB9uNWSSLsmgJkYvGRF7/fitness-buddy?type=desi
 ---
 
 
-![demo](url "title")
+![demo](readme-files\demo.gif "title")
 
 **Start app**
 ```
@@ -45,15 +45,18 @@ npm run db-reset
 ### FUNCTIONALITIES
 #### CREATE YOUR ACCOUNT
 
-![demo](url "title")
+![demo-signup](readme-files\demo-signup.mp4 "demo signup")
 
 #### SEE YOUR LATEST SESSION ON YOUR HOMEPAGE
 
 ![demo](url "title")
 
+#### START A NEW SESSION
+![demo-new-session](readme-files\demo-new-session.mp4 "demo-new-session")
+
 #### MANAGE YOUR FAVOURITE EXERCISES AND ADD NEW ONES
 
-![demo](url "title")
+![demo-exercice-list](readme-files\demo-manage-exercise-list.mp4 "demo-exercice-list")
 
 #### UPDATE YOUR PERSONNAL INFO
 
@@ -68,7 +71,7 @@ npm run db-reset
 ![demo](url "title")
 
 
-#### \**UPCOMING\** WATCH YOUR PROGRESS
+#### \**UPCOMING*\* WATCH YOUR PROGRESS
 This session is currently in progress and the data totally fake!
 
 I want to improve my skills in manipulating data et render data dynamically. 
