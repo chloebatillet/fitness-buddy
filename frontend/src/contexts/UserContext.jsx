@@ -29,14 +29,12 @@ export function UserProvider({ children }) {
       //setCode([...code, Math.floor(Math.random() * 10)]);
       c.push(Math.floor(Math.random() * 10));
     }
-    //console.log(c.join(''));
     //setCode(c.join(''));
     return c.join('');
   };
 
   const getACode = () => {
     const code = setInterval(() => {
-      console.log('coucou');
       generateCode();
     }, 60000);
     clearInterval(code);
@@ -74,7 +72,6 @@ export function UserProvider({ children }) {
 
   const deleteAccount = async (objData) => {
     try {
-      //console.log(objData);
       // if (objData.code !== code) {
       //   sendMessage('Invalid code.');
       // }

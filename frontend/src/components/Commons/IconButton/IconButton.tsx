@@ -15,13 +15,9 @@ function IconButton({
   isClickedInitial,
   handleClickFunction,
 }: IconButtonProps) {
-
   const [isClicked, setIsClicked] = useState(isClickedInitial);
-  
 
   const handleClick = () => {
-    console.log(isClicked);
-    
     if (handleClickFunction) {
       handleClickFunction(isClicked);
     }

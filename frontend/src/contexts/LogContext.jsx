@@ -74,7 +74,6 @@ export function LogProvider({ children }) {
       ] = `Bearer ${localStorage.getItem('token')}`;
       setIsLogged(true);
 
-      //console.log('coucou');
       setUser(localStorage.getItem('user'));
     }
   };

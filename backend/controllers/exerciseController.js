@@ -84,7 +84,6 @@ const exerciseController = {
     try {
       const exerciseToDelete = await Exercise.findByPk(req.params.id);
 
-      console.log(exerciseToDelete);
       if (!exerciseToDelete) {
         res.status(404).json({ error: "Exercise not found." });
         return;

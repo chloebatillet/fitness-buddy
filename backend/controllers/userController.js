@@ -128,7 +128,6 @@ const userController = {
 
   delete: async (req, res) => {
     try {
-      console.log('body', req.body);
       const user = await User.findByPk(req.user.id);
 
       if (!user) {
