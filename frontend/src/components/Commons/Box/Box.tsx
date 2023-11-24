@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, CSSProperties } from 'react';
 
 interface BoxProps {
   children: ReactNode;
@@ -8,7 +8,7 @@ interface BoxProps {
 }
 
 function Box({ children, backgroundColor, color, align }: BoxProps) {
-  const style = {
+  const style: CSSProperties = {
     padding: '2rem',
     borderRadius: '8px',
     boxShadow: '0 0 8px 2px rgba(0, 0, 0, 0.08)',

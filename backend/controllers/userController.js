@@ -45,21 +45,22 @@ const userController = {
 
   signup: async (req, res) => {
     try {
-      console.log(req.body);
       const { firstname, lastname, email, password } = req.body;
 
+      // Vérification que les champs requis sont complétés
       if (!firstname || !lastname || !email || !password) {
         res.status(400).json({ error: "All fields should be completed." });
         return;
       }
 
+      // Vérifiaction de la validité de l'email
       if (!validator.validate(email)) {
         res.status(400).json({ error: "Invalid email" });
         return;
       }
 
+      // Vérification de la disponibilité de l'email en BDD
       const alreadyExists = await User.findOne({ where: { email: email } });
-
       if (alreadyExists) {
         res.status(400).json({ error: "This email is already used." });
         return;
@@ -69,8 +70,10 @@ const userController = {
       const saltRounds = parseInt(process.env.SALT_ROUNDS);
       const hashedPassword = await bcrypt.hash(password, saltRounds);
 
+      // Création en BDD
       await User.create({ ...req.body, password: hashedPassword });
 
+      // Réponse au client
       res.json({ message: "Account created! Please log in now." });
     } catch (error) {
       console.log(error);

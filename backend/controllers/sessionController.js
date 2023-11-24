@@ -79,22 +79,27 @@ const sessionController = {
 
   addExerciseToSession: async (req, res) => {
     try {
+      //NB: nb_reps et weight_lifted sont des arrays
       const { exercise_id, nb_reps, weight_lifted } = req.body;
       const { id } = req.params;
 
+      // Vérification des champs requis
       if (!exercise_id || nb_reps.length === 0 || weight_lifted.length === 0) {
         return res.status(400).json({error: "Can't add empty exercise."})
       }
       
+      // Ajout de l'exercice à la séance en BDD
+      // add.Exercise est codée directement sur le modèle
       const newExercise = await SessionExercise.addExercise(id, exercise_id);
 
+      // Pour chaque série, on insère le nombre de rep et la charge
+      // correspondante à l'exercice en question
       nb_reps.map(async (e, index) => {
-        console.log(e, weight_lifted[index]);
         await Set.addSet(newExercise.id, e, weight_lifted[index]);
       });
 
+      // Réponse au client
       res.status(201).json({
-        // sessionExercise_id: newExercise.id,
         message: "Exercise added to session!",
       });
     } catch (error) {

@@ -8,18 +8,16 @@ import { useMessageContext } from '../../contexts/MessageContext';
 import Snackbar from '../Commons/Snackbar/Snackbar';
 import Loader from '../Loader';
 
+//* A mettre sur le log out et expiration du token
+// localStorage.clear()
 function App() {
-  //* A mettre sur le log out et expiration du token
-  // localStorage.clear()
   const { isLogged, setIsLogged, stayLogged } = useLogContext();
-
   const { message, isLoading, loadingMessage } = useMessageContext();
 
   useEffect(() => {
     stayLogged();
   }, [setIsLogged]);
   
-
   return (
     <>
       {isLoading ? (

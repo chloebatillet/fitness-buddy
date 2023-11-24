@@ -8,6 +8,7 @@ interface ButttonRoundProps {
   value: string;
   icon?: string;
   onClick: MouseEventHandler<HTMLButtonElement> | undefined;
+  disabled?: boolean;
   style?: {
     color?: string;
     backgroundColor?: string;

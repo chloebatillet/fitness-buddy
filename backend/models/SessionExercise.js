@@ -9,7 +9,6 @@ class SessionExercise extends Model {
       session_id: parseInt(sessionId),
       exercise_id: parseInt(exerciseId),
     });
-    console.log(sessionExercise);
     return sessionExercise;
   }
 }

@@ -36,7 +36,6 @@ router.post("/session/:id/exercise", sessionController.addExerciseToSession);
 
 /**
  * Exercise list
- * - basic CRUD
  */
 router.get("/exercise-list", exerciseController.getAll);
 router.post("/exercise-list", exerciseController.add);

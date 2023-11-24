@@ -23,7 +23,7 @@ function AddExercise({ setIsOpen }: AddExerciseProps) {
   const [exercises, setExercices] = useState([]);
   const [allSet, setAllSet] = useState([<SetInput />]);
 
-  const formRef = useRef();
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   const { addExercise, displayExercises } = useCurrentSessionContext();
 
@@ -45,14 +45,16 @@ function AddExercise({ setIsOpen }: AddExerciseProps) {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    const formData = new FormData(formRef.current);
-    const objData = Object.fromEntries(formData);
-    addExercise(objData);
-    //addSets(data);
+    if (formRef.current) {
+      const formData = new FormData(formRef.current);
+      const objData = Object.fromEntries(formData);
+      addExercise(objData);
+      //addSets(data);
 
-    // hide form
-    setIsOpen(false);
-    // clear form
+      // hide form
+      setIsOpen(false);
+      // clear form
+    }
   };
 
   return (
@@ -64,7 +66,9 @@ function AddExercise({ setIsOpen }: AddExerciseProps) {
           selectId={'exercise_id'}
           icon="ph:barbell"
           required={true}
-          autoFocus={true} placeholder={'-- select exercise --'}        />
+          autoFocus={true}
+          placeholder={'-- select exercise --'}
+        />
 
         <section className="exercise-box-content">
           <ul className="set-list">

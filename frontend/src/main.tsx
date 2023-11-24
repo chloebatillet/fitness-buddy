@@ -47,11 +47,11 @@ const root = ReactDOM.createRoot(
 // );
 
 root.render(
-  <MessageProvider>
-    <UserProvider>
-      <ExerciseProvider>
-        <CurrentSessionProvider>
-          <LogProvider>
+  <MessageProvider> {/*Pour afficher les messages d'erreur/succès*/}
+    <UserProvider> {/*Pour stocker les informations de l'utilisateur */}
+      <ExerciseProvider> {/*Pour stocker la liste des exercices, les favoris etc. */}
+        <CurrentSessionProvider> {/*Pour enregistrer les données de séance en cours de saisie */}
+          <LogProvider> {/*Pour gérer la connexion/déconnexion/maintien de la connexion */}
             <RouterProvider router={router} />
           </LogProvider>
         </CurrentSessionProvider>

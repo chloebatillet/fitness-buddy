@@ -40,6 +40,12 @@ function NewSession() {
         style={{ backgroundColor: '#efefef', color: '#222' }}
       />
       <Timer />
+      
+    </main>
+  );
+}
+
+export default NewSession;
 
       {/* {allExercises.map((e, index) => {
         if (index < allExercises.length - 1) {
@@ -48,8 +54,3 @@ function NewSession() {
           return e;
         }
       })}  */}
-    </main>
-  );
-}
-
-export default NewSession;
