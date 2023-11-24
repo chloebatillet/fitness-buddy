@@ -30,9 +30,8 @@ function Section({ titleDetails, id, content, borderBottom }: SectionProps) {
         fontWeight={titleDetails.fontWeight}
         link={titleDetails.link}
         textLink={titleDetails.textLink}
-      >
-        {content}
-      </Title>
+      />
+      {content}
     </section>
   );
 }

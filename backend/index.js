@@ -11,7 +11,8 @@ const port = process.env.PORT;
 // URL autorisées à consulter l'API
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "*",
+    // origin: ["http://localhost:5173", "https://fitness-buddy-xi.vercel.app/"],
   })
 );
 
