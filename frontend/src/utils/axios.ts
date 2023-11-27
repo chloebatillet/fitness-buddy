@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://fitness-buddy-api.onrender.com/',
 });
 
 export default axiosInstance;
 
-  // headers: {
-  //   Authorization: `Bearer ${localStorage.getItem('token')}`,
-  // },
+// headers: {
+//   Authorization: `Bearer ${localStorage.getItem('token')}`,
+// },
