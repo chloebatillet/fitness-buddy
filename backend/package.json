@@ -11,7 +11,8 @@
     "start": "node index.js",
     "deploy": "npm run build && node index.js",
     "db-seeding": "npx sequelize-cli db:seed:all",
-    "db-reset": "node resetDB.js && npm run db-seeding"
+    "db-reset": "node resetDB.js && npm run db-seeding",
+    "db-delete": "node resetDB.js"
   },
   "repository": {
     "type": "git",
