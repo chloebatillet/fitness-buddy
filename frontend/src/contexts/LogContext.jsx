@@ -23,12 +23,11 @@ export function LogProvider({ children }) {
       .get('/')
       .then((response) => {
         console.log(response)
-        sendMessage(response.data);
         return true;
       })
       .catch((error) => {
-        console.log(error);
-        sendMessage(error.response.data.error);
+        console.log(error.response.data.error);
+        // sendMessage(error.response.data.error);
         return false;
       });
   };
