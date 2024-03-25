@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import logo from '../../../assets/FITNESS BUDDYlogo.svg';
 
@@ -6,9 +6,16 @@ import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
 import './style.scss';
+import { useLogContext } from '../../../contexts/LogContext';
 
 function Authentication() {
   const [isLogin, setIsLogin] = useState(true);
+  const {wakeServerUp} = useLogContext();
+
+  useEffect(() => {
+    wakeServerUp();
+  }, [])
+  
 
   return (
     <>

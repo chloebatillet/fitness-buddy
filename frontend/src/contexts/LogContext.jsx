@@ -18,6 +18,21 @@ export function LogProvider({ children }) {
   const { setUser } = useUserContext();
   const { endSession } = useCurrentSessionContext();
 
+  const wakeServerUp = async () => {
+    return await axiosInstance
+      .get('/')
+      .then((response) => {
+        console.log(response)
+        sendMessage(response.data);
+        return true;
+      })
+      .catch((error) => {
+        console.log(error);
+        sendMessage(error.response.data.error);
+        return false;
+      });
+  };
+
   const signup = async (objData) => {
     return await axiosInstance
       .post('/signup', objData)
@@ -95,6 +110,7 @@ export function LogProvider({ children }) {
   const logContextValue = {
     isLogged,
     setIsLogged,
+    wakeServerUp,
     signup,
     login,
     stayLogged,
