@@ -7,12 +7,15 @@ import SignupForm from './SignupForm';
 
 import './style.scss';
 import { useLogContext } from '../../../contexts/LogContext';
+import { Icon } from '@iconify/react';
 
 function Authentication() {
   const [isLogin, setIsLogin] = useState(true);
   const [serverIsOk, setServerIsOk] = useState(false);
   const [seconds, setSeconds] = useState(30);
   const { wakeServerUp } = useLogContext();
+
+  const year = new Date().getFullYear();
 
   useEffect(() => {
     const updateTimer = () => {
@@ -59,7 +62,14 @@ function Authentication() {
             ? 'Server ready'
             : `Wait for server to relaunch: ${seconds}s...`}
         </p>
-        <p className="credits">Created & developed by @chloebatillet</p>
+        <p className="credits">
+          Developed with
+          <Icon icon="ph:heart" className="icon" />
+          and
+          <Icon icon="ph:coffee" className="icon" />
+          by <a href="https://github.com/chloebatillet" target="_blank">Chloé Batillet </a>
+           © {year}
+        </p>
       </div>
     </>
   );
