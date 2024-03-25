@@ -10,12 +10,32 @@ import { useLogContext } from '../../../contexts/LogContext';
 
 function Authentication() {
   const [isLogin, setIsLogin] = useState(true);
-  const {wakeServerUp} = useLogContext();
+  const [serverIsOk, setServerIsOk] = useState(false);
+  const [seconds, setSeconds] = useState(30);
+  const { wakeServerUp } = useLogContext();
 
   useEffect(() => {
-    wakeServerUp();
-  }, [])
-  
+    const updateTimer = () => {
+      if (seconds > 0) {
+        setSeconds((prevSeconds) => prevSeconds - 1);
+      }
+    };
+
+    const timerInterval = setInterval(updateTimer, 1000);
+
+    return () => clearInterval(timerInterval);
+  }, [seconds]);
+
+  const relaunchServer = async () => {
+    const test = await wakeServerUp();
+    setServerIsOk(test);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      relaunchServer();
+    }, 1000);
+  }, []);
 
   return (
     <>
@@ -31,6 +51,14 @@ function Authentication() {
             <SignupForm isLogin={isLogin} setIsLogin={setIsLogin} />
           )}
         </div>
+        <p className="server-status">
+          <span
+            className={serverIsOk ? 'bubble --green' : 'bubble --red'}
+          ></span>
+          {serverIsOk
+            ? 'Server ready'
+            : `Wait for server to relaunch: ${seconds}s...`}
+        </p>
         <p className="credits">Created & developed by @chloebatillet</p>
       </div>
     </>

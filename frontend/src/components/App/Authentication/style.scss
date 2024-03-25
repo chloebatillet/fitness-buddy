@@ -63,3 +63,33 @@
     color: rgb(#222, 0.2);
   }
 }
+
+.server-status {
+  font-size: x-small;
+  color: rgb(#222, 0.5);
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  width: 100%;
+  margin-left: 2rem;
+
+  .bubble {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: grey;
+    transition: all 0.5s;
+    box-shadow: 0 0 2px rgb(0, 0, 0) inset;
+
+    &.--green {
+      background-color: green;
+      box-shadow: 0 0 6px rgba(0, 128, 0, 0.8);
+    }
+
+    &.--red {
+      background-color: red;
+      box-shadow: 0 0 6px rgba(255, 0, 0, 0.8);
+    }
+  }
+}
