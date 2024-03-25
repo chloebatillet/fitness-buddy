@@ -8,11 +8,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "deploy": "npm run build && node index.js",
+    "start": "node api/index.js",
+    "deploy": "npm run build && node api/index.js",
     "db-seeding": "npx sequelize-cli db:seed:all",
-    "db-reset": "node resetDB.js && npm run db-seeding",
-    "db-delete": "node resetDB.js"
+    "db-reset": "node api/resetDB.js && npm run db-seeding",
+    "db-delete": "node api/resetDB.js"
   },
   "repository": {
     "type": "git",
