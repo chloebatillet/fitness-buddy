@@ -1,5 +1,6 @@
 import Authentication from './Authentication/Authentication';
 import Page from './Page/Page';
+import { Analytics } from '@vercel/analytics/react';
 
 import './App.scss';
 import { useLogContext } from '../../contexts/LogContext';
@@ -28,6 +29,7 @@ function App() {
           <Snackbar message={message} />
         </>
       )}
+      <Analytics />
     </>
   );
 }
