@@ -21,13 +21,11 @@ export function LogProvider({ children }) {
   const wakeServerUp = async () => {
     return await axiosInstance
       .get('/')
-      .then((response) => {
-        console.log(response)
-        sendMessage(response.data);
+      .then((_) => {
         return true;
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data.error);
         sendMessage(error.response.data.error);
         return false;
       });
